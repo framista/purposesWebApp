@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 const Button = (props) => {
   const { onClick, disabled = false, loading = false, children } = props;
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     if (disabled || loading) return;
     onClick();
   };
