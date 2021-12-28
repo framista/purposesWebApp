@@ -1,0 +1,24 @@
+.googleButton {
+  button {
+    --googleColor: rgb(66, 133, 244);
+    background-color: var(--googleColor);
+    border-color: var(--googleColor);
+  }
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__icon {
+    min-height: 1.3em;
+    min-width: 1.3rem;
+    border-radius: 50%;
+    display: inline-flex;
+    background: #fff;
+    padding: 3px 0 0 3px;
+    margin-right: 7px;
+  }
+  &__text {
+    margin-bottom: 4px;
+  }
+}
