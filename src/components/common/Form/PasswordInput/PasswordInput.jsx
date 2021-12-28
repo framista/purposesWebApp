@@ -40,7 +40,7 @@ const PasswordInput = (props) => {
             onClick={() => setPasswordType(newPasswordType)}
             className="passwordInput__icon"
           >
-            {passwordType === 'password' ? <FaEye /> : <FaEyeSlash />}
+            {passwordType === 'password' ? <FaEyeSlash /> : <FaEye />}
           </div>
         </div>
       </FieldWrapper>
