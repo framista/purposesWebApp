@@ -43,20 +43,15 @@ const useInputChange = (initialState, options = { clearErrors: false }) => {
     const { name, value } = event.target;
     const valid = await schema.isValid({ [name]: value });
     if (valid) {
-      dispatch({
-        type: actions.SET_INPUT_ERROR,
-        payload: { name, errorValue: '' },
-      });
+      setError(name, '');
       return '';
     }
     try {
       await yup.reach(schema, name).validate(value);
+      setError(name, '');
     } catch (error) {
       const { message: errorValue } = error;
-      dispatch({
-        type: actions.SET_INPUT_ERROR,
-        payload: { name, errorValue },
-      });
+      setError(name, errorValue);
       return errorValue;
     }
   };
@@ -75,8 +70,8 @@ const useInputChange = (initialState, options = { clearErrors: false }) => {
     dispatch({ type: actions.SET_INIT_STATE });
   };
 
-  const setError = (name, error) => {
-    dispatch({ type: actions.SET_INPUT_ERROR, payload: { name, error } });
+  const setError = (name, errorValue) => {
+    dispatch({ type: actions.SET_INPUT_ERROR, payload: { name, errorValue } });
   };
 
   const updateState = (newState) => {

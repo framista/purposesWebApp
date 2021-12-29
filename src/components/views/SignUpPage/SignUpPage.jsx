@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-import {
-  auth,
-  loginWithEmailAndPassword,
-  signInWithGoogle,
-} from '../../../firebase';
+import { auth, registerWithEmailAndPassword } from '../../../firebase';
 import { useInputChange } from '../../../hooks';
-import { Button, Input, PasswordInput, GoogleButton } from '../../common/Form';
+import { Button, Input, PasswordInput } from '../../common/Form';
 
-import { getInitialState } from './LoginPage.helpers';
+import { getInitialState } from './SignUpPage.helpers';
 
-import './LoginPage.scss';
+import './SignUpPage.scss';
 
-const LoginPage = () => {
+const SignUpPage = () => {
   const [state, handlers] = useInputChange(getInitialState());
   const [user, loading, error] = useAuthState(auth);
 
@@ -23,19 +19,14 @@ const LoginPage = () => {
     }
   }, [user, loading]);
 
-  const onSubmit = () => loginWithEmailAndPassword(state.email, state.password);
+  const onSubmit = () =>
+    registerWithEmailAndPassword(state.name, state.email, state.password);
 
   return (
-    <div className="loginPage">
-      <article className="loginPage__content">
-        <hgroup className="loginPage__header">
-          <h1>Sign in</h1>
-          <h2>And achieve your goals 🏆💪🥇 </h2>
-        </hgroup>
-        <div className="loginPage__image">
-          <img src={'images/goals.svg'} alt="goals" />
-        </div>
-        <form className="loginPage__form">
+    <div className="signUpPage">
+      <article className="signUpPage__content">
+        <h3 className="signUpPage__title">Sign up</h3>
+        <form className="signUpPage__form">
           <Input
             errorMessage={state.errors.email}
             id="email"
@@ -45,6 +36,14 @@ const LoginPage = () => {
             onChange={handlers.changeInput}
             autoFocus
           />
+          <Input
+            errorMessage={state.errors.name}
+            id="name"
+            labelText="Name"
+            placeholder="Enter your name"
+            value={state.name}
+            onChange={handlers.changeInput}
+          />
           <PasswordInput
             errorMessage={state.errors.password}
             id="password"
@@ -52,12 +51,11 @@ const LoginPage = () => {
             value={state.password}
             onChange={handlers.changeInput}
           />
-          <Button onClick={onSubmit}>Login</Button>
-          <GoogleButton onClick={signInWithGoogle} loading={loading} />
+          <Button onClick={onSubmit}>Sign Up</Button>
         </form>
       </article>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

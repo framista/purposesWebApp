@@ -1,11 +1,32 @@
 .loginPage {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__content {
+    margin: 0;
+    padding: 20px;
+    max-width: 600px;
+    display: grid;
+    grid-template-areas:
+      'header image'
+      'form form';
+  }
+  &__header {
+    grid-area: header;
+  }
   &__image {
+    grid-area: image;
     display: flex;
     justify-content: center;
     align-items: center;
     img {
-      width: 80%;
-      height: 80%;
+      width: 200px;
+      height: 100px;
     }
+  }
+  &__form {
+    grid-area: form;
+    margin-bottom: 0px;
   }
 }
