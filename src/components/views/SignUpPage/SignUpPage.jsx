@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-import { auth, registerWithEmailAndPassword } from '../../../firebase';
+import { auth, registerWithEmailAndPassword } from '../../../services/firebase';
 import { useInputChange } from '../../../hooks';
 import { Button, Input, PasswordInput } from '../../common/Form';
 

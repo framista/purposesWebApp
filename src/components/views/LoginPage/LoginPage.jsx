@@ -5,7 +5,7 @@ import {
   auth,
   loginWithEmailAndPassword,
   signInWithGoogle,
-} from '../../../firebase';
+} from '../../../services/firebase';
 import { useInputChange } from '../../../hooks';
 import { Button, Input, PasswordInput, GoogleButton } from '../../common/Form';
 
