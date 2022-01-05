@@ -11,8 +11,8 @@ function App() {
   return (
     <Provider store={store}>
       <Header />
-      <LoginPage />
-      {/* <SignUpPage /> */}
+      {/* <LoginPage /> */}
+      <SignUpPage />
     </Provider>
   );
 }

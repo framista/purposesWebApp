@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
 import {
   getAuth,
@@ -9,6 +9,11 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
+import {
+  createUser,
+  loginSuccessfully,
+} from '../store/currentUser/currentUser.actions';
+import store from '../store';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBSZ4uu7O3RjHwIsINiDr3zdtRyt8Uic0Y',
@@ -26,14 +31,6 @@ const db = getFirestore();
 
 const provider = new GoogleAuthProvider();
 
-const addUser = async (uid, name, email) => {
-  await addDoc(collection(db, 'users'), {
-    uid,
-    name,
-    email,
-  });
-};
-
 const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, provider);
@@ -43,10 +40,11 @@ const signInWithGoogle = async () => {
       const { uid } = doc.data();
       if (uid === res.user.uid) isNewUser = false;
     });
+    const { uid, displayName, email } = res.user;
     if (isNewUser) {
-      const { uid, displayName, email } = res.user;
-      await addUser(uid, displayName, email);
+      await createUser(displayName, uid, email);
     }
+    store.dispatch(loginSuccessfully(displayName, uid, email));
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -55,7 +53,10 @@ const signInWithGoogle = async () => {
 
 const loginWithEmailAndPassword = async (email, password) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const res = await signInWithEmailAndPassword(auth, email, password);
+    store.dispatch(
+      loginSuccessfully(res.user.displayName, res.user.uid, email)
+    );
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -65,7 +66,8 @@ const loginWithEmailAndPassword = async (email, password) => {
 const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
-    await addUser(res.user.uid, name, email);
+    await createUser(name, res.user.uid, email);
+    store.dispatch(loginSuccessfully(name, res.user.uid, email));
   } catch (err) {
     console.error(err);
     alert(err.message);
