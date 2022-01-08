@@ -21,6 +21,10 @@
     align-items: center;
     justify-content: center;
   }
+  &__mode {
+    margin: 0 15px 5px 0;
+    color: var(--primary);
+  }
   &__logoutButton {
     padding: 0px 15px 2px;
     margin: 0;

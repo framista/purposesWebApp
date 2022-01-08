@@ -12,6 +12,13 @@ code {
     monospace;
 }
 
+html,
+body,
+#root,
+#root > div {
+  height: 100%;
+}
+
 /* Pink Light scheme (Default) */
 /* Can be forced with data-theme="light" */
 [data-theme='light'],

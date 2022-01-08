@@ -1,3 +1,7 @@
 // currentUser
 export const LOGIN_SUCCESSFULLY = 'LOGIN_SUCCESSFULLY';
 export const LOGOUT_SUCCESSFULLY = 'LOGOUT_SUCCESSFULLY';
+
+// uiState
+export const SET_UI_STATE_MODE = 'SET_UI_STATE_MODE';
+export const TOOGLE_UI_STATE_MODE = 'TOOGLE_UI_STATE_MODE';
