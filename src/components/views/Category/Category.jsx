@@ -1,9 +1,10 @@
 import React from 'react';
+import CategoryHeader from './CategoryHeader/CategoryHeader.redux';
 
 const Category = () => {
   return (
     <div className="app__content">
-      <h4>Category</h4>
+      <CategoryHeader />
     </div>
   );
 };
