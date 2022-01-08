@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { MdDarkMode, MdWbSunny } from 'react-icons/md';
 
-import { logout } from '../../../../services/firebase';
-
 import './Header.scss';
 
-const Header = ({ logged, toogleUiStateMode, uiStateMode }) => {
+const Header = ({ logged, toogleUiStateMode, uiStateMode, logoutUser }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -16,7 +14,7 @@ const Header = ({ logged, toogleUiStateMode, uiStateMode }) => {
 
   const handleLogOut = useCallback(async (e) => {
     e.preventDefault();
-    await logout();
+    await logoutUser();
     navigate('/login');
   }, []);
 
@@ -50,6 +48,7 @@ Header.propTypes = {
   toogleUiStateMode: PropTypes.func,
   logged: PropTypes.bool,
   uiStateMode: PropTypes.string,
+  logoutUser: PropTypes.func,
 };
 
 export default React.memo(Header);

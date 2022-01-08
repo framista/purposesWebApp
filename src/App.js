@@ -23,30 +23,28 @@ function App() {
         <BrowserRouter>
           <Header />
           <Sidebar />
-          <div className="app__content">
-            <Routes>
-              <Route path="/" element={<Auth />} />
-              <Route path="login" element={<LoginPage />} />
-              <Route path="signup" element={<SignUpPage />} />
-              <Route path="about" element={<About />} />
-              <Route
-                path="dashboard"
-                element={
-                  <RequireAuth>
-                    <Dashboard />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="*"
-                element={
-                  <main style={{ padding: '1rem' }}>
-                    <p>There's nothing here!</p>
-                  </main>
-                }
-              />
-            </Routes>
-          </div>
+          <Routes>
+            <Route path="/" element={<Auth />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="signup" element={<SignUpPage />} />
+            <Route path="about" element={<About />} />
+            <Route
+              path="dashboard"
+              element={
+                <RequireAuth>
+                  <Dashboard />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <main style={{ padding: '1rem' }}>
+                  <p>There's nothing here!</p>
+                </main>
+              }
+            />
+          </Routes>
         </BrowserRouter>
       </UiState>
     </Provider>

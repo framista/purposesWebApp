@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as EP from '../endpoints';
 import * as AT from '../actionTypes';
+import { logout } from '../../services/firebase';
 
 export const createUser = async (name, id, email) => {
   try {
@@ -24,6 +25,9 @@ export const loginUser = (user) => (dispatch) => {
   dispatch(loginSuccessfully(displayName, uid, email));
 };
 
-export const logoutUser = () => ({
-  type: AT.LOGOUT_SUCCESSFULLY,
-});
+export const logoutUser = () => async (dispatch) => {
+  await logout();
+  dispatch({
+    type: AT.LOGOUT_SUCCESSFULLY,
+  });
+};
