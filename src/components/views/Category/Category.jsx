@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Dashboard = () => {
+const Category = () => {
   return (
     <div className="app__content">
-      <h4>Dashboard</h4>
+      <h4>Category</h4>
     </div>
   );
 };
 
-export default Dashboard;
+export default Category;
