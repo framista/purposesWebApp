@@ -9,11 +9,7 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
-import {
-  createUser,
-  loginSuccessfully,
-} from '../store/currentUser/currentUser.actions';
-import store from '../store';
+import { createUser } from '../store/currentUser/currentUser.actions';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBSZ4uu7O3RjHwIsINiDr3zdtRyt8Uic0Y',
@@ -44,7 +40,6 @@ const signInWithGoogle = async () => {
     if (isNewUser) {
       await createUser(displayName, uid, email);
     }
-    store.dispatch(loginSuccessfully(displayName, uid, email));
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -53,10 +48,7 @@ const signInWithGoogle = async () => {
 
 const loginWithEmailAndPassword = async (email, password) => {
   try {
-    const res = await signInWithEmailAndPassword(auth, email, password);
-    store.dispatch(
-      loginSuccessfully(res.user.displayName, res.user.uid, email)
-    );
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -67,7 +59,6 @@ const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     await createUser(name, res.user.uid, email);
-    store.dispatch(loginSuccessfully(name, res.user.uid, email));
   } catch (err) {
     console.error(err);
     alert(err.message);

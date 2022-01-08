@@ -14,7 +14,16 @@ export const createUser = async (name, id, email) => {
   }
 };
 
-export const loginSuccessfully = (name, id, email) => ({
+const loginSuccessfully = (name, id, email) => ({
   type: AT.LOGIN_SUCCESSFULLY,
   payload: { name, id, email },
+});
+
+export const loginUser = (user) => (dispatch) => {
+  const { displayName, uid, email } = user;
+  dispatch(loginSuccessfully(displayName, uid, email));
+};
+
+export const logoutUser = () => ({
+  type: AT.LOGOUT_SUCCESSFULLY,
 });

@@ -1,17 +1,16 @@
 import React, { useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import { auth, logout } from '../../../../services/firebase';
+import { logout } from '../../../../services/firebase';
 
 import './Header.scss';
 
-const Header = () => {
-  const user = auth.currentUser;
+const Header = ({ logged }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const loginDestination = location.pathname === '/login' ? 'signup' : 'login';
-  const logoDestination = user ? 'dashboard' : '';
+  const logoDestination = logged ? 'dashboard' : '';
 
   const handleLogOut = useCallback(async (e) => {
     e.preventDefault();
@@ -25,7 +24,7 @@ const Header = () => {
         <Link to={`/${logoDestination}`}>Purposes App</Link>
       </div>
       <div className="header__options">
-        {user ? (
+        {logged ? (
           <button
             className="outline header__logoutButton"
             onClick={handleLogOut}
