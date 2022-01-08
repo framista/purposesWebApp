@@ -76,7 +76,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 
 const logout = async () => {
   try {
-    await signOut();
+    await signOut(auth);
   } catch (err) {
     console.log(err);
   }

@@ -1,0 +1,11 @@
+.auth {
+  margin-top: 25vh;
+  display: flex;
+  justify-content: center;
+  progress {
+    max-width: 1000px;
+    min-width: 200px;
+    width: 90%;
+    animation-duration: 2s;
+  }
+}

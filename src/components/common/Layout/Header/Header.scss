@@ -1,4 +1,28 @@
 .header {
-  border: 1px solid white;
   height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--card-background-color);
+  box-shadow: 2px 2px 5px -2px rgba(88, 66, 90, 1);
+  margin-bottom: 10px;
+  position: sticky;
+  top: 0px;
+  &__logo {
+    font-family: 'Yellowtail', serif;
+    font-size: 1.3rem;
+    &:hover a {
+      text-decoration: none;
+    }
+  }
+  &__options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__logoutButton {
+    padding: 0px 15px 2px;
+    margin: 0;
+  }
 }
