@@ -1,14 +1,23 @@
 .modal {
-  &__content {
+  &__article {
     width: 90%;
     max-width: 600px;
-    padding: 30px;
+    padding: 0px;
+  }
+  &__scrollbar {
+    max-height: 90vh;
+  }
+  &__content {
+    padding: 20px;
   }
   &__header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 15px;
+  }
+  &__title {
+    margin: 0;
   }
   &__closeIcon {
     font-size: 1.2rem;

@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { MdClose } from 'react-icons/md';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
 import './Modal.scss';
 
@@ -28,26 +29,30 @@ const Modal = (props) => {
     <div className="modal" data-theme={uiStateMode}>
       <dialog open="true" onClick={onClose}>
         <article
-          className="modal__content"
+          className="modal__article"
           onClick={(e) => {
             e.stopPropagation();
           }}
         >
-          <div className="modal__header">
-            <p>{title}</p>
-            <div className="modal__closeIcon" onClick={onClose}>
-              <MdClose />
+          <OverlayScrollbarsComponent className="modal__scrollbar">
+            <div className="modal__content">
+              <div className="modal__header">
+                <h6 className="modal__title">{title}</h6>
+                <div className="modal__closeIcon" onClick={onClose}>
+                  <MdClose />
+                </div>
+              </div>
+              {children}
+              <div className="modal__footer">
+                <button className="outline" onClick={onClose}>
+                  Cancel
+                </button>
+                <button onClick={onSubmit} aria-busy={loading ? 'true' : null}>
+                  Submit
+                </button>
+              </div>
             </div>
-          </div>
-          {children}
-          <div className="modal__footer">
-            <button className="outline" onClick={onClose}>
-              Cancel
-            </button>
-            <button onClick={onSubmit} aria-busy={loading ? 'true' : null}>
-              Submit
-            </button>
-          </div>
+          </OverlayScrollbarsComponent>
         </article>
       </dialog>
     </div>,

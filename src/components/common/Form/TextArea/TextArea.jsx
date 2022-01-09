@@ -3,37 +3,32 @@ import PropTypes from 'prop-types';
 
 import FieldWrapper from '../FieldWrapper/FieldWrapper';
 
-const Input = (props) => {
+const TextArea = (props) => {
   const {
     errorMessage = '',
     id,
-    type = 'text',
     name,
     placeholder = '',
     labelText = '',
     value,
     onChange,
-    autoFocus = false,
-    ...restProps
   } = props;
   return (
     <FieldWrapper elementId={id} errorMessage={errorMessage} text={labelText}>
-      <input
-        type={type}
+      <textarea
         id={id}
         name={name || id}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         aria-invalid={errorMessage ? 'true' : null}
-        autoFocus={autoFocus}
-        {...restProps}
+        style={{ resize: 'none' }}
       />
     </FieldWrapper>
   );
 };
 
-Input.propTypes = {
+TextArea.propTypes = {
   errorMessage: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
@@ -44,4 +39,4 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
 };
 
-export default Input;
+export default TextArea;
