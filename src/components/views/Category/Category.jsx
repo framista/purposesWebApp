@@ -1,11 +1,16 @@
 import React from 'react';
+
 import CategoryHeader from './CategoryHeader/CategoryHeader.redux';
+import CategoryModal from './CategoryModal/CategoryModal.redux';
 
 const Category = () => {
   return (
-    <div className="app__content">
-      <CategoryHeader />
-    </div>
+    <>
+      <CategoryModal />
+      <div className="app__content">
+        <CategoryHeader />
+      </div>
+    </>
   );
 };
 

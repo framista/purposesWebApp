@@ -5,3 +5,5 @@ export const LOGOUT_SUCCESSFULLY = 'LOGOUT_SUCCESSFULLY';
 // uiState
 export const SET_UI_STATE_MODE = 'SET_UI_STATE_MODE';
 export const TOOGLE_UI_STATE_MODE = 'TOOGLE_UI_STATE_MODE';
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const HIDE_MODAL = 'HIDE_MODAL';

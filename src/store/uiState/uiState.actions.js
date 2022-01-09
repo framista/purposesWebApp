@@ -12,3 +12,12 @@ export const toogleUiStateMode = () => (dispatch, getState) => {
   localStorage.setItem(UI_STATE_MODE, newMode);
   dispatch({ type: AT.TOOGLE_UI_STATE_MODE });
 };
+
+export const showModal = (modalType, modalProps = {}) => ({
+  type: AT.SHOW_MODAL,
+  payload: { modalType, modalProps },
+});
+
+export const hideModal = () => ({
+  type: AT.HIDE_MODAL,
+});

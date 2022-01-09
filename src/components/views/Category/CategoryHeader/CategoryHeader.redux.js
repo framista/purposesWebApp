@@ -2,6 +2,12 @@ import { connect } from 'react-redux';
 
 import CategoryHeader from './CategoryHeader';
 
+import { showModal } from '../../../../store/uiState/uiState.actions';
+
 const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps)(CategoryHeader);
+const mapDispatchToProps = {
+  showModal,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryHeader);
