@@ -6,6 +6,7 @@ import { Input, TextArea } from '../../../common/Form';
 
 import { useInputChange } from '../../../../hooks';
 import { getInitialState } from './CategoryModal.helpers';
+import { createEvent } from '../../../../utils/inputHelpers';
 
 const CategoryModal = (props) => {
   const { isOpen, hideModal, createCategory } = props;
@@ -14,13 +15,25 @@ const CategoryModal = (props) => {
 
   const modalTitle = 'Add category for your new purpose';
 
+  const validateAll = async () => {
+    const inputs = ['categoryName', 'description'];
+    const promises = inputs.map((input) =>
+      handlers.validateInput(createEvent(input, state[input]))
+    );
+    const res = await Promise.all(promises);
+    return !res.some((error) => error !== '');
+  };
+
   const handleSubmit = useCallback(async () => {
     const { errors, ...category } = state;
+    const valid = await validateAll();
+    if (!valid) return;
     try {
       setLoading(true);
       await createCategory(category);
     } finally {
       setLoading(false);
+      hideAndClear();
     }
   }, [state]);
 
@@ -38,11 +51,11 @@ const CategoryModal = (props) => {
       loading={loading}
     >
       <Input
-        errorMessage={state.errors.name}
-        id="name"
+        errorMessage={state.errors.categoryName}
+        id="categoryName"
         placeholder="Programming"
-        labelText="Name"
-        value={state.name}
+        labelText="Name of category"
+        value={state.categoryName}
         onChange={handlers.changeInput}
         autoFocus
       />
@@ -76,6 +89,7 @@ const CategoryModal = (props) => {
 CategoryModal.propTypes = {
   isOpen: PropTypes.bool,
   hideModal: PropTypes.func,
+  createCategory: PropTypes.func,
 };
 
 export default CategoryModal;

@@ -10,10 +10,11 @@ const createCategorySuccessfully = (category, id) => ({
 export const createCategory = (category) => async (dispatch, getState) => {
   const { currentUser } = getState();
   try {
-    const result = await purposeApi(currentUser.id).post(
-      URL_CATEGORY,
-      category
-    );
+    const { categoryName: name, newCategory } = category;
+    const result = await purposeApi(currentUser.id).post(URL_CATEGORY, {
+      ...newCategory,
+      name,
+    });
     dispatch(createCategorySuccessfully(category, result.data.id));
   } catch (err) {
     console.log(err);
