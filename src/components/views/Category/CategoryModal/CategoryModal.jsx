@@ -12,7 +12,6 @@ const CategoryModal = (props) => {
   const [loading, setLoading] = useState(false);
   const [state, handlers] = useInputChange(getInitialState());
 
-  const isEditted = false;
   const modalTitle = 'Add category for your new purpose';
 
   const handleSubmit = useCallback(async () => {
@@ -54,16 +53,6 @@ const CategoryModal = (props) => {
         onChange={handlers.changeInput}
         type="color"
       />
-      {isEditted && (
-        <Input
-          errorMessage={state.errors.date}
-          id="date"
-          labelText="Date"
-          value={state.date}
-          onChange={handlers.changeInput}
-          type="date"
-        />
-      )}
       <Input
         id="points"
         labelText={`Weekly points (${state.points})`}
