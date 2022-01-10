@@ -3,7 +3,7 @@ import * as AT from '../actionTypes';
 const initialState = {
   email: '',
   name: '',
-  user_id: '',
+  id: '',
   logged: false,
 };
 

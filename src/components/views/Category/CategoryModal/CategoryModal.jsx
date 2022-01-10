@@ -8,12 +8,22 @@ import { useInputChange } from '../../../../hooks';
 import { getInitialState } from './CategoryModal.helpers';
 
 const CategoryModal = (props) => {
-  const { isOpen, hideModal } = props;
+  const { isOpen, hideModal, createCategory } = props;
   const [loading, setLoading] = useState(false);
   const [state, handlers] = useInputChange(getInitialState());
 
   const isEditted = false;
   const modalTitle = 'Add category for your new purpose';
+
+  const handleSubmit = useCallback(async () => {
+    const { errors, ...category } = state;
+    try {
+      setLoading(true);
+      await createCategory(category);
+    } finally {
+      setLoading(false);
+    }
+  }, [state]);
 
   const hideAndClear = useCallback(() => {
     handlers.setInitState();
@@ -24,6 +34,7 @@ const CategoryModal = (props) => {
     <Modal
       isOpen={isOpen}
       onClose={hideAndClear}
+      onSubmit={handleSubmit}
       title={modalTitle}
       loading={loading}
     >

@@ -1,4 +1,4 @@
-import { COLOR_PRIMARY } from "../../../../constants/color";
+import { COLOR_PRIMARY } from '../../../../constants/color';
 
 export const getInitialState = () => {
   return {
@@ -6,7 +6,6 @@ export const getInitialState = () => {
     color: COLOR_PRIMARY,
     points: 80,
     description: '',
-    date: null,
     errors: {},
   };
 };
