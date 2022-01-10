@@ -7,7 +7,7 @@ export const createUser = async (name, id, email) => {
   try {
     await axios.post(`${EP.BASE_URL}${EP.CREATE_USER}`, {
       name,
-      id,
+      user_id: id,
       email,
     });
   } catch (err) {
