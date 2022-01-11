@@ -1,19 +1,48 @@
 import React from 'react';
-
+import { FaSortUp, FaSortDown } from 'react-icons/fa';
 import './CategoryTableHeader.scss';
 
-const CategoryTableHeader = () => {
+const sortingArrow = (sortingColumn, sortingWay, column) => (
+  <>
+    {sortingColumn === column &&
+      (sortingWay === 'asc' ? <FaSortUp /> : <FaSortDown />)}
+  </>
+);
+
+const CategoryTableHeader = ({
+  changeSortingForCategory,
+  sortingColumn,
+  sortingWay,
+}) => {
   return (
     <div className="categoryTableHeader">
-      <small className="secondary">Name</small>
-      <small className="secondary categoryTableHeader__description">
-        Description
-      </small>
-      <small className="secondary">Points</small>
-      <small className="secondary">Current week</small>
+      <div
+        className="categoryTableHeader__cell"
+        onClick={() => changeSortingForCategory('name')}
+      >
+        <small className="secondary">Name</small>
+        {sortingArrow(sortingColumn, sortingWay, 'name')}
+      </div>
+      <div
+        className="categoryTableHeader__cell"
+        onClick={() => changeSortingForCategory('description')}
+      >
+        <small className="secondary categoryTableHeader__description">
+          Description
+        </small>
+        {sortingArrow(sortingColumn, sortingWay, 'description')}
+      </div>
+      <div
+        className="categoryTableHeader__cell"
+        onClick={() => changeSortingForCategory('points')}
+      >
+        <small className="secondary">Points</small>
+        {sortingArrow(sortingColumn, sortingWay, 'points')}
+      </div>
+      <small cweeklassName="secondary">Current week</small>
       <small className="secondary"></small>
     </div>
   );
 };
 
-export default CategoryTableHeader;
+export default React.memo(CategoryTableHeader);

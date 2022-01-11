@@ -50,3 +50,24 @@ export const changeSearchValueForCategory = (searchText) => ({
   type: AT.CHANGE_SEARCH_VALUE_FOR_CATEGORY,
   payload: searchText,
 });
+
+export const changeSortingForCategory = (column) => (dispatch, getState) => {
+  const { sortingColumn, sortingWay } = getState().categories;
+  let [newSortingColumn, newSortingWay] = ['', ''];
+
+  if (sortingColumn === column && sortingWay === 'asc') {
+    newSortingWay = '';
+    newSortingColumn = '';
+  } else if (sortingColumn !== column) {
+    newSortingColumn = column;
+    newSortingWay = 'desc';
+  } else {
+    newSortingColumn = column;
+    newSortingWay = 'asc';
+  }
+
+  dispatch({
+    type: AT.CHANGING_SORTING_FOR_CATEGORY,
+    payload: { sortingColumn: newSortingColumn, sortingWay: newSortingWay },
+  });
+};

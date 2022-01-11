@@ -5,6 +5,11 @@
   border-bottom: 1px solid var(--secondary);
   padding-bottom: 15px;
 
+  &__cell {
+    display: flex;
+    align-items: center;
+  }
+
   &__description {
     display: none;
   }

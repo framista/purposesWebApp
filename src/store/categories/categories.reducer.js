@@ -3,6 +3,8 @@ import * as AT from '../actionTypes';
 const initialState = {
   allCategories: {},
   searchValue: '',
+  sortingColumn: '',
+  sortingWay: '',
 };
 
 const categories = (state = initialState, action) => {
@@ -30,6 +32,9 @@ const categories = (state = initialState, action) => {
         ...state,
         searchValue: action.payload,
       };
+    }
+    case AT.CHANGING_SORTING_FOR_CATEGORY: {
+      return { ...state, ...action.payload };
     }
     default:
       return state;
