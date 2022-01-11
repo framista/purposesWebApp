@@ -15,6 +15,15 @@ const categories = (state = initialState, action) => {
         },
       };
     }
+    case AT.FETCH_CATEGORIES_SUCCESSFULLY: {
+      return {
+        ...state,
+        allCategories: action.payload.reduce(
+          (prev, category) => ({ ...prev, [category._id]: category }),
+          {}
+        ),
+      };
+    }
     default:
       return state;
   }
