@@ -2,6 +2,7 @@ import * as AT from '../actionTypes';
 
 const initialState = {
   allCategories: {},
+  searchValue: '',
 };
 
 const categories = (state = initialState, action) => {
@@ -22,6 +23,12 @@ const categories = (state = initialState, action) => {
           (prev, category) => ({ ...prev, [category._id]: category }),
           {}
         ),
+      };
+    }
+    case AT.CHANGE_SEARCH_VALUE_FOR_CATEGORY: {
+      return {
+        ...state,
+        searchValue: action.payload,
       };
     }
     default:

@@ -7,12 +7,19 @@ import { SearchInput } from '../../../common/Filters';
 
 import './CategoryHeader.scss';
 
-const CategoryHeader = ({ showModal }) => {
+const CategoryHeader = ({
+  showModal,
+  changeSearchValueForCategory,
+  searchValue,
+}) => {
   return (
     <div className="categoryHeader">
       <div className="categoryHeader__left">
         <h4 className="categoryHeader__title">Category</h4>
-        <SearchInput />
+        <SearchInput
+          onChange={changeSearchValueForCategory}
+          value={searchValue}
+        />
       </div>
       <button
         className="categoryHeader__button"
@@ -28,7 +35,9 @@ const CategoryHeader = ({ showModal }) => {
 };
 
 CategoryHeader.propTypes = {
+  searchValue: PropTypes.string,
   showModal: PropTypes.func,
+  changeSearchValueForCategory: PropTypes.func,
 };
 
 export default React.memo(CategoryHeader);

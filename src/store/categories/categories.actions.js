@@ -45,3 +45,8 @@ export const createCategory = (category) => async (dispatch, getState) => {
     console.log(err);
   }
 };
+
+export const changeSearchValueForCategory = (searchText) => ({
+  type: AT.CHANGE_SEARCH_VALUE_FOR_CATEGORY,
+  payload: searchText,
+});
