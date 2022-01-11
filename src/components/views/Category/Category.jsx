@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import CategoryHeader from './CategoryHeader/CategoryHeader.redux';
 import CategoryModal from './CategoryModal/CategoryModal.redux';
+import Loading from '../../common/Layout/Loading/Loading';
 
 const Category = (props) => {
   const [loading, setLoading] = useState(false);
@@ -22,6 +23,7 @@ const Category = (props) => {
       <div className="app__content">
         <CategoryHeader />
       </div>
+      {loading ? <Loading /> : null}
     </>
   );
 };
