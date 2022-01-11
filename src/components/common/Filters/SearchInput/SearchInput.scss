@@ -1,0 +1,23 @@
+.searchInput {
+  display: flex;
+  align-items: center;
+  background-color: var(--muted-border-color);
+  margin-left: 30px;
+  padding: 5px 10px;
+  border-radius: 25px;
+  &__icon {
+    color: var(--contrast);
+  }
+  &__input {
+    all: unset;
+    max-height: 15px;
+  }
+  input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='file']) {
+    padding: 0;
+    padding-bottom: 3px;
+    margin: 0;
+    margin-left: 3px;
+    font-size: 0.7rem;
+    color: var(--contrast);
+  }
+}
