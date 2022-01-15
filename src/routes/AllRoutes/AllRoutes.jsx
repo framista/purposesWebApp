@@ -9,6 +9,7 @@ import Dashboard from '../../components/views/Dashboard/Dashboard';
 import About from '../../components/views/About/About';
 import Auth from '../../components/views/Auth/Auth.redux';
 import Category from '../../components/views/Category/Category.redux';
+import Task from '../../components/views/Task/Task.redux';
 
 const AllRoutes = () => {
   return (
@@ -30,6 +31,14 @@ const AllRoutes = () => {
         element={
           <RequireAuth>
             <Category />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="task"
+        element={
+          <RequireAuth>
+            <Task />
           </RequireAuth>
         }
       />

@@ -5,3 +5,6 @@ export const CREATE_USER = 'api/users';
 
 // category
 export const URL_CATEGORY = 'api/categories';
+
+// task
+export const URL_TASK = 'api/tasks';
