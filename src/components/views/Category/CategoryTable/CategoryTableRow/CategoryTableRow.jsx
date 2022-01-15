@@ -1,5 +1,5 @@
 import React from 'react';
-import { BsThreeDotsVertical } from 'react-icons/bs';
+import CategoryTableRowOptionsMenu from '../CategoryTableRowOptionsMenu/CategoryTableRowOptionsMenu';
 
 import './CategoryTableRow.scss';
 
@@ -19,9 +19,7 @@ const CategoryTableRow = (props) => {
           <div style={{ width: '70%', background: color }} />
         </div>
       </div>
-      <div className="categoryTableRow__more">
-        <BsThreeDotsVertical />
-      </div>
+      <CategoryTableRowOptionsMenu />
     </div>
   );
 };

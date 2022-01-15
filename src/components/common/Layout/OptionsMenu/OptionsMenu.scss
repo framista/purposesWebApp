@@ -1,0 +1,29 @@
+.optionsMenu {
+  position: relative;
+  &__options {
+    position: absolute;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--contrast-focus);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  &__optionItem {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    border-bottom: 1px solid var(--contrast-focus);
+    padding: 5px 10px;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--contrast-focus);
+    }
+    &--disabled {
+      cursor: not-allowed;
+    }
+  }
+  &__optionIcon {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+  }
+}
