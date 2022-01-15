@@ -36,7 +36,12 @@ const OptionsMenu = ({ options, minWidth = 100, uiStateMode }) => {
 
   return (
     <div className="optionsMenu">
-      <div tabIndex={0} onFocus={handleExpand} onBlur={handleClose}>
+      <div
+        tabIndex={0}
+        onFocus={handleExpand}
+        onBlur={handleClose}
+        className="optionsMenu__button"
+      >
         <BsThreeDotsVertical />
       </div>
       {open && (

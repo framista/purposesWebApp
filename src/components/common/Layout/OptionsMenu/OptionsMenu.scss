@@ -7,6 +7,16 @@
     border-radius: 10px;
     overflow: hidden;
   }
+  &__button {
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 5px 2px;
+    &:focus,
+    &:hover {
+      background-color: var(--primary-focus);
+    }
+  }
   &__optionItem {
     display: flex;
     align-items: center;
