@@ -18,7 +18,11 @@ const Sidebar = ({ logged }) => {
           'sidebar__option--selected': location.pathname === option.destination,
         });
         return (
-          <Link to={option.destination} className={optionClassName}>
+          <Link
+            to={option.destination}
+            className={optionClassName}
+            key={option.id}
+          >
             <div className="sidebar__icon">{option.icon}</div>
           </Link>
         );

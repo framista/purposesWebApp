@@ -1,4 +1,4 @@
-import { MdCategory, MdAreaChart } from 'react-icons/md';
+import { MdCategory, MdAreaChart, MdOutlineAddTask } from 'react-icons/md';
 
 export const sidebarOptions = [
   {
@@ -12,5 +12,11 @@ export const sidebarOptions = [
     destination: '/category',
     icon: <MdCategory />,
     name: 'Categories',
+  },
+  {
+    id: 'task',
+    destination: '/task',
+    icon: <MdOutlineAddTask />,
+    name: 'Tasks',
   },
 ];
