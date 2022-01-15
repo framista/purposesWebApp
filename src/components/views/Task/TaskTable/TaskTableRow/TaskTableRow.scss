@@ -34,6 +34,10 @@
     margin-right: 8px;
     border: 1px solid var(--secondary);
   }
+  &__categoryName {
+    margin: 0;
+    font-size: 0.8rem;
+  }
 
   @media screen and (min-width: 860px) {
     grid-template-columns: 180px 2fr 1fr 1fr 1fr;

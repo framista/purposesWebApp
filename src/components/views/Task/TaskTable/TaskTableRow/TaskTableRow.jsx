@@ -18,7 +18,7 @@ const TaskTableRow = (props) => {
           className="taskTableRow__dot"
           style={{ background: category.color }}
         />
-        <span>{category.name}</span>
+        <p className="taskTableRow__categoryName">{category.name}</p>
       </div>
       <TaskTableRowOptionsMenu />
     </div>
