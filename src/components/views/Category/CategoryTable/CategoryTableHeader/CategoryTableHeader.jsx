@@ -39,7 +39,7 @@ const CategoryTableHeader = ({
         <small className="secondary">Points</small>
         {sortingArrow(sortingColumn, sortingWay, 'points')}
       </div>
-      <small cweeklassName="secondary">Current week</small>
+      <small className="secondary">Current week</small>
       <small className="secondary"></small>
     </div>
   );
