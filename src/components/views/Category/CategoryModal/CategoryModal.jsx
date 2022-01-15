@@ -21,7 +21,7 @@ const CategoryModal = (props) => {
       handlers.validateInput(createEvent(input, state[input]))
     );
     const res = await Promise.all(promises);
-    return !res.some((error) => error !== '');
+    return !res.some((error) => error && error !== '');
   };
 
   const handleSubmit = useCallback(async () => {
