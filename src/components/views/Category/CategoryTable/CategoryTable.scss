@@ -1,0 +1,8 @@
+.categoryTable {
+  &__scrollbar {
+    max-height: 70vh;
+    .os-scrollbar-handle {
+      background-color: var(--contrast-focus) !important;
+    }
+  }
+}

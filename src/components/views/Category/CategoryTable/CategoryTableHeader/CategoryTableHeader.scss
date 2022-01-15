@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 100px repeat(3, 1fr);
   gap: 15px;
-  border-bottom: 1px solid var(--secondary);
+  border-bottom: 2px solid var(--contrast-focus);
   padding-bottom: 15px;
 
   &__cell {

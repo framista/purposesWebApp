@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
 import { getRelevantCategories } from './CategoryTable.helpers';
 
@@ -25,9 +26,11 @@ const CategoryTable = (props) => {
   return (
     <div className="categoryTable">
       <CategoryTableHeader />
-      {categories.map((category) => (
-        <CategoryTableRow key={category._id} category={category} />
-      ))}
+      <OverlayScrollbarsComponent className="categoryTable__scrollbar">
+        {categories.map((category) => (
+          <CategoryTableRow key={category._id} category={category} />
+        ))}
+      </OverlayScrollbarsComponent>
     </div>
   );
 };

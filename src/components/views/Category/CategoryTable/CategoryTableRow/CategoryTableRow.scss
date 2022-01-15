@@ -1,5 +1,5 @@
 .categoryTableRow {
-  border-bottom: 1px solid var(--secondary);
+  border-bottom: 1px solid var(--contrast-focus);
   display: grid;
   grid-template-columns: 100px repeat(3, 1fr);
   gap: 15px;
