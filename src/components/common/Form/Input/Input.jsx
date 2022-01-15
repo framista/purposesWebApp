@@ -39,7 +39,7 @@ Input.propTypes = {
   name: PropTypes.string,
   placeholder: PropTypes.string,
   labelText: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func,
   autoFocus: PropTypes.bool,
 };

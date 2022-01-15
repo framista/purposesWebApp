@@ -37,8 +37,8 @@ const createTaskSuccessfully = (task, id) => ({
 export const createTask = (task) => async (dispatch, getState) => {
   const { currentUser } = getState();
   try {
-    const { taskName: name, ...restTask } = task;
-    const newTask = { ...restTask, name};
+    const { taskName: name, category, ...restTask } = task;
+    const newTask = { ...restTask, name, category_id: category._id };
     const result = await purposeApi(currentUser.id).post(URL_TASK, newTask);
     dispatch(createTaskSuccessfully(newTask, result.data.id));
   } catch (err) {

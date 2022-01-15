@@ -21,18 +21,17 @@ const Select = (props) => {
         id={id}
         name={name || id}
         value={value.id}
+        defaultValue={placeholder}
         onChange={(e) => {
           const option =
-            options.find(({ name }) => name === e.target.value) || {};
+            options.find(({ _id }) => _id === e.target.value) || {};
           onChange(createEvent(id, option));
         }}
         aria-invalid={errorMessage ? 'true' : null}
       >
-        <option value="" selected>
-          {placeholder}
-        </option>
+        <option value="default">{placeholder}</option>
         {options.map((option) => (
-          <option key={option.id} value={option.id}>
+          <option key={option._id} value={option._id}>
             {option.name}
           </option>
         ))}

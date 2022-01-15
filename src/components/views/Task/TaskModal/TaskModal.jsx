@@ -28,12 +28,12 @@ const TaskModal = (props) => {
   };
 
   const handleSubmit = useCallback(async () => {
-    const { errors, ...category } = state;
+    const { errors, ...task } = state;
     const valid = await validateAll();
     if (!valid) return;
     try {
       setLoading(true);
-      await createTask(category);
+      await createTask(task);
     } finally {
       setLoading(false);
       hideAndClear();
@@ -72,15 +72,8 @@ const TaskModal = (props) => {
         options={categoriesOptions}
       />
       <Input
-        id="color"
-        labelText="Color"
-        value={state.color}
-        onChange={handlers.changeInput}
-        type="color"
-      />
-      <Input
         id="points"
-        labelText={`Weekly points (${state.points})`}
+        labelText={`Default points (${state.points})`}
         value={state.points}
         onChange={handlers.changeInput}
         type="range"
