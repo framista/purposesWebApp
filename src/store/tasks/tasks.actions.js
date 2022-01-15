@@ -67,7 +67,7 @@ export const changeSortingForTask = (column) => (dispatch, getState) => {
   }
 
   dispatch({
-    type: AT.CHANGING_SORTING_FOR_CATEGORY,
+    type: AT.CHANGING_SORTING_FOR_TASK,
     payload: { sortingColumn: newSortingColumn, sortingWay: newSortingWay },
   });
 };
