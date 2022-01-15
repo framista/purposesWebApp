@@ -8,6 +8,7 @@ import TaskModal from './TaskModal';
 
 const mapStateToProps = (state) => ({
   isOpen: state.uiState.modalType === TASK_MODAL,
+  allCategories: state.categories.allCategories,
 });
 
 const mapDispatchToProps = {

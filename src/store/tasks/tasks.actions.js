@@ -1,6 +1,7 @@
 import * as AT from '../actionTypes';
 import { purposeApi } from '../../services/purposeApi';
 import { URL_TASK } from '../endpoints';
+import { fetchCategories } from '../categories/categories.actions';
 
 const fetchTasksSuccessfully = (tasks) => ({
   type: AT.FETCH_TASKS_SUCCESSFULLY,
@@ -20,6 +21,7 @@ export const getTaskRouteData = () => async (dispatch, getState) => {
   const { currentUser } = getState();
   try {
     const promises = [];
+    promises.push(dispatch(fetchCategories(currentUser.id)));
     promises.push(dispatch(fetchTasks(currentUser.id)));
     await Promise.all(promises);
   } catch (err) {

@@ -1,22 +1,25 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import Modal from '../../../common/Form/Modal/Modal.redux';
-import { Input, TextArea } from '../../../common/Form';
+import { Input, Select, TextArea } from '../../../common/Form';
 
 import { useInputChange } from '../../../../hooks';
 import { getInitialState } from './TaskModal.helpers';
 import { createEvent } from '../../../../utils/inputHelpers';
 
 const TaskModal = (props) => {
-  const { isOpen, hideModal, createTask } = props;
+  const { isOpen, hideModal, createTask, allCategories } = props;
   const [loading, setLoading] = useState(false);
   const [state, handlers] = useInputChange(getInitialState());
-
+  const categoriesOptions = useMemo(
+    () => Object.values(allCategories),
+    [allCategories]
+  );
   const modalTitle = 'Add task';
 
   const validateAll = async () => {
-    const inputs = ['taskName', 'description'];
+    const inputs = ['taskName', 'description', 'category'];
     const promises = inputs.map((input) =>
       handlers.validateInput(createEvent(input, state[input]))
     );
@@ -58,6 +61,15 @@ const TaskModal = (props) => {
         value={state.taskName}
         onChange={handlers.changeInput}
         autoFocus
+      />
+      <Select
+        errorMessage={state.errors.category}
+        id="category"
+        placeholder="Choose category of your task"
+        labelText="Category"
+        value={state.category}
+        onChange={handlers.changeInput}
+        options={categoriesOptions}
       />
       <Input
         id="color"

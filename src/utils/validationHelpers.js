@@ -12,6 +12,14 @@ const schema = yup.object().shape({
     .max(30, 'Name of category is too long')
     .required('Name of category is required'),
   description: yup.string().max(200, 'Description is too long'),
+  taskName: yup
+    .string()
+    .max(30, 'Name of task is too long')
+    .required('Name of task is required'),
+  category: yup
+    .object()
+    .shape({ _id: yup.string().required('Category is required') })
+    .required('Category is required'),
 });
 
 export default schema;

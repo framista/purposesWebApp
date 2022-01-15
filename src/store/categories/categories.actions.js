@@ -7,7 +7,7 @@ const fetchCategoriesSuccessfully = (categories) => ({
   payload: categories,
 });
 
-const fetchCategories = (userId) => async (dispatch) => {
+export const fetchCategories = (userId) => async (dispatch) => {
   try {
     const result = await purposeApi(userId).get(URL_CATEGORY);
     dispatch(fetchCategoriesSuccessfully(result.data));
