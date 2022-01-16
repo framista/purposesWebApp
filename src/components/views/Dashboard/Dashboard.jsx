@@ -1,9 +1,10 @@
 import React from 'react';
+import DashboardHeader from './DashboardHeader/DashboardHeader.redux';
 
 const Dashboard = () => {
   return (
     <div className="app__content">
-      <h4>Dashboard</h4>
+      <DashboardHeader />
     </div>
   );
 };
