@@ -3,7 +3,6 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
 import { usePortal } from '../../../../hooks';
 
-import Portal from '../../Layout/Portal/Portal';
 import { SearchInput } from '../index';
 import MultiSelectOptionItem from './MultiSelectOptionItem/MultiSelectOptionItem';
 import MultiSelectAllOrNone from './MultiSelectAllOrNone/MultiSelectAllOrNone';
@@ -41,34 +40,32 @@ const MultiSelect = (props) => {
         <p className="multiSelect__selectLabel">{selectLabel}</p>
       </div>
       {open && (
-        <Portal elementId="filter-root" open={open}>
-          <div
-            className="multiSelect__content"
-            style={coords}
-            data-theme={uiStateMode}
-            ref={multiSelectContentRef}
-          >
-            <SearchInput />
-            <MultiSelectAllOrNone
-              selectAll={selectAll}
-              deselectAll={deselectAll}
-              selectLabel={selectLabel}
-            />
-            <OverlayScrollbarsComponent className="multiSelect__scrollbar">
-              {options.map((option) => {
-                return (
-                  <MultiSelectOptionItem
-                    checked={selected.includes(option._id)}
-                    _id={option._id}
-                    key={option._id}
-                    value={option.value}
-                    toggleOption={toggleOption}
-                  />
-                );
-              })}
-            </OverlayScrollbarsComponent>
-          </div>
-        </Portal>
+        <div
+          className="multiSelect__content"
+          style={coords}
+          data-theme={uiStateMode}
+          ref={multiSelectContentRef}
+        >
+          <SearchInput />
+          <MultiSelectAllOrNone
+            selectAll={selectAll}
+            deselectAll={deselectAll}
+            selectLabel={selectLabel}
+          />
+          <OverlayScrollbarsComponent className="multiSelect__scrollbar">
+            {options.map((option) => {
+              return (
+                <MultiSelectOptionItem
+                  checked={selected.includes(option._id)}
+                  _id={option._id}
+                  key={option._id}
+                  value={option.value}
+                  toggleOption={toggleOption}
+                />
+              );
+            })}
+          </OverlayScrollbarsComponent>
+        </div>
       )}
     </div>
   );
