@@ -1,0 +1,27 @@
+.multiSelect {
+  &__button {
+    display: flex;
+    align-items: center;
+    background-color: var(--muted-border-color);
+    margin-left: 30px;
+    padding: 5px 10px;
+    border-radius: 25px;
+    color: var(--contrast);
+    font-size: 0.7rem;
+    cursor: pointer;
+  }
+  &__selectLabel {
+    margin: 0;
+    margin-left: 5px;
+    font-size: 0.7rem;
+  }
+  &__content {
+    position: absolute;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--contrast-focus);
+    border-radius: 10px;
+    .searchInput {
+      margin: 10px;
+    }
+  }
+}

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdAddBox } from 'react-icons/md';
+import { MdAddBox, MdCategory } from 'react-icons/md';
 
 import { TASK_MODAL } from '../../../../constants/modalTypes';
 import { SearchInput } from '../../../common/Filters';
 
 import './TaskHeader.scss';
+import { MultiSelect } from '../../../common/Filters';
 
 const TaskHeader = ({ showModal, changeSearchValueForTask, searchValue }) => {
   return (
@@ -13,6 +14,7 @@ const TaskHeader = ({ showModal, changeSearchValueForTask, searchValue }) => {
       <div className="taskHeader__left">
         <h4 className="taskHeader__title">Tasks</h4>
         <SearchInput onChange={changeSearchValueForTask} value={searchValue} />
+        <MultiSelect icon={<MdCategory />} selectLabel="Category" />
       </div>
       <button
         className="taskHeader__button"
