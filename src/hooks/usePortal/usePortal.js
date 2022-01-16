@@ -4,10 +4,12 @@ const usePortal = (contentRef, parentRef, translation = { x: 0, y: 0 }) => {
   const [open, setOpen] = useState(false);
   const [coords, setCoords] = useState({});
 
-  const updateContentCoords = () => {
+  const updateContentCoords = (e) => {
+    const rect = e.target.getBoundingClientRect();
+
     setCoords({
-      left: parentRef?.current?.offsetLeft - translation.x,
-      top: parentRef?.current?.offsetTop + translation.y,
+      left: (parentRef?.current?.offsetLeft || rect.x) - translation.x,
+      top: (parentRef?.current?.offsetTop || rect.y) + translation.y,
     });
   };
 
@@ -30,6 +32,9 @@ const usePortal = (contentRef, parentRef, translation = { x: 0, y: 0 }) => {
         updateContentCoords(e);
         setOpen(true);
       },
+      handleClose: () => {
+        setOpen(false)
+      }
     }),
     []
   );

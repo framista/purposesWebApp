@@ -1,46 +1,37 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import classNames from 'classnames';
 
 import Portal from '../Portal/Portal';
+import { usePortal } from '../../../../hooks';
 
 import './OptionsMenu.scss';
 
 const OptionsMenu = ({ options, minWidth = 100, uiStateMode }) => {
-  const [open, setOpen] = useState(false);
-  const [coords, setCoords] = useState({});
-
-  const updateTooltipCoords = (target) => {
-    const rect = target.getBoundingClientRect();
-    setCoords({
-      left: rect.x - minWidth,
-      top: rect.y + window.scrollY,
-    });
-  };
-
-  const handleExpand = (e) => {
-    updateTooltipCoords(e.target);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const optionMenuContentRef = useRef(null);
+  const optionMenuButtonRef = useRef(null);
+  const {
+    open,
+    coords,
+    handlers: portalHandlers,
+  } = usePortal(optionMenuContentRef, optionMenuButtonRef, {
+    x: minWidth + 3,
+    y: -5,
+  });
 
   const handleSelect = (option) => {
     if (option.disabled) return;
     option.onClick();
-    handleClose();
+    portalHandlers.handleClose();
   };
 
   return (
     <div className="optionsMenu">
       <div
-        tabIndex={0}
-        onFocus={handleExpand}
-        onBlur={handleClose}
+        onClick={portalHandlers.handleExpand}
         className="optionsMenu__button"
+        ref={optionMenuButtonRef}
       >
         <BsThreeDotsVertical />
       </div>
@@ -50,6 +41,7 @@ const OptionsMenu = ({ options, minWidth = 100, uiStateMode }) => {
             className="optionsMenu__options"
             style={{ ...coords, minWidth: `${minWidth}px` }}
             data-theme={uiStateMode}
+            ref={optionMenuContentRef}
           >
             {options.map((option) => {
               const optionItemClassName = classNames(
