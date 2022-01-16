@@ -6,6 +6,7 @@ const initialState = {
   sortingColumn: '',
   sortingWay: '',
   selectedCategories: [],
+  searchCategory: '',
 };
 
 const categories = (state = initialState, action) => {
@@ -39,6 +40,9 @@ const categories = (state = initialState, action) => {
     }
     case AT.SET_SELECTED_CATEGORIES: {
       return { ...state, selectedCategories: action.payload };
+    }
+    case AT.SET_SEARCH_CATEGORY: {
+      return { ...state, searchCategory: action.payload };
     }
     default:
       return state;

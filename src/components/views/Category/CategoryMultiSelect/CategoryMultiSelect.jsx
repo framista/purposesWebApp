@@ -14,11 +14,13 @@ const CategoryMultiSelect = (props) => {
     selectedCategories,
     deselectAllCategories,
     selectAllCategorieries,
+    setSearchCategories,
+    searchCategory,
   } = props;
 
   const options = useMemo(
-    () => getCategoryOptions(allCategories),
-    [allCategories]
+    () => getCategoryOptions(allCategories, searchCategory),
+    [allCategories, searchCategory]
   );
 
   return (
@@ -30,6 +32,8 @@ const CategoryMultiSelect = (props) => {
       selected={selectedCategories}
       deselectAll={deselectAllCategories}
       selectAll={selectAllCategorieries}
+      searchInput={searchCategory}
+      onSearchInputChange={setSearchCategories}
     />
   );
 };
@@ -40,6 +44,8 @@ CategoryMultiSelect.propTypes = {
   selectedCategories: PropTypes.arrayOf(PropTypes.string),
   deselectAllCategories: PropTypes.func,
   selectAllCategorier: PropTypes.func,
+  setSearchCategories: PropTypes.func,
+  searchCategory: PropTypes.string,
 };
 
 export default React.memo(CategoryMultiSelect);

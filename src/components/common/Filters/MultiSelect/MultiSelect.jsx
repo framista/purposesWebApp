@@ -19,6 +19,8 @@ const MultiSelect = (props) => {
     selected,
     deselectAll,
     selectAll,
+    searchInput,
+    onSearchInputChange,
   } = props;
   const multiSelectContentRef = useRef(null);
   const multiSelectButtonRef = useRef(null);
@@ -46,7 +48,7 @@ const MultiSelect = (props) => {
           data-theme={uiStateMode}
           ref={multiSelectContentRef}
         >
-          <SearchInput />
+          <SearchInput value={searchInput} onChange={onSearchInputChange} />
           <MultiSelectAllOrNone
             selectAll={selectAll}
             deselectAll={deselectAll}

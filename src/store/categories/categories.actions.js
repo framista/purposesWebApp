@@ -97,3 +97,8 @@ export const selectAllCategorieries = () => (dispatch, getState) => {
   const newCategoriesIds = Object.keys(allCategories);
   dispatch(setSelectedCategories(newCategoriesIds));
 };
+
+export const setSearchCategories = (searchCategory) => ({
+  type: AT.SET_SEARCH_CATEGORY,
+  payload: searchCategory,
+});
