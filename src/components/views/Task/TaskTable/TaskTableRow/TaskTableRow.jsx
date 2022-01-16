@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import TaskTableRowOptionsMenu from '../TaskTableRowOptionsMenu/TaskTableRowOptionsMenu';
+import { shorterString } from '../../../../../utils/stringHelpers';
 
 import './TaskTableRow.scss';
 
@@ -11,7 +13,7 @@ const TaskTableRow = (props) => {
   return (
     <div className="taskTableRow">
       <p className="taskTableRow__name">{name}</p>
-      <p className="taskTableRow__description">{description}</p>
+      <p className="taskTableRow__description">{shorterString(description)}</p>
       <p className="taskTableRow__points">{points}</p>
       <div className="taskTableRow__categoryColumn">
         <span

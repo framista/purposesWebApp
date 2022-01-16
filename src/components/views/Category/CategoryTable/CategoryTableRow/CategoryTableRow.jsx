@@ -1,5 +1,7 @@
 import React from 'react';
+
 import CategoryTableRowOptionsMenu from '../CategoryTableRowOptionsMenu/CategoryTableRowOptionsMenu';
+import { shorterString } from '../../../../../utils/stringHelpers';
 
 import './CategoryTableRow.scss';
 
@@ -12,7 +14,9 @@ const CategoryTableRow = (props) => {
         <span className="categoryTableRow__dot" style={{ background: color }} />
         <p className="categoryTableRow__name">{name}</p>
       </div>
-      <p className="categoryTableRow__description">{description}</p>
+      <p className="categoryTableRow__description">
+        {shorterString(description)}
+      </p>
       <p className="categoryTableRow__points">{points}</p>
       <div>
         <div className="categoryTableRow__progress" data-tooltip="70%">
