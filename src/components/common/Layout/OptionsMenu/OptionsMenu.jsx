@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import classNames from 'classnames';
 
-import OptionsMenuPortal from './OptionsMenuPortal/OptionsMenuPortal';
+import Portal from '../Portal/Portal';
 
 import './OptionsMenu.scss';
 
@@ -45,7 +45,7 @@ const OptionsMenu = ({ options, minWidth = 100, uiStateMode }) => {
         <BsThreeDotsVertical />
       </div>
       {open && (
-        <OptionsMenuPortal>
+        <Portal elementId="menuOption-root">
           <div
             className="optionsMenu__options"
             style={{ ...coords, minWidth: `${minWidth}px` }}
@@ -70,7 +70,7 @@ const OptionsMenu = ({ options, minWidth = 100, uiStateMode }) => {
               );
             })}
           </div>
-        </OptionsMenuPortal>
+        </Portal>
       )}
     </div>
   );
