@@ -1,0 +1,23 @@
+.multiSelectAllOrNone {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10px;
+  &__label {
+    font-size: 0.7rem;
+  }
+  &__options {
+    display: flex;
+  }
+  &__button {
+    font-size: 0.55rem;
+    margin: 0;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 5px;
+    &:hover {
+      background-color: var(--primary-focus);
+    }
+  }
+}
