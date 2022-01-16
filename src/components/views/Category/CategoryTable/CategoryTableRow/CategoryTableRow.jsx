@@ -1,13 +1,13 @@
 import React from 'react';
 
-import CategoryTableRowOptionsMenu from '../CategoryTableRowOptionsMenu/CategoryTableRowOptionsMenu';
+import CategoryTableRowOptionsMenu from '../CategoryTableRowOptionsMenu/CategoryTableRowOptionsMenu.redux';
 import { shorterString } from '../../../../../utils/stringHelpers';
 
 import './CategoryTableRow.scss';
 
 const CategoryTableRow = (props) => {
   const { category } = props;
-  const { name, description, points, color } = category;
+  const { name, description, points, color, _id } = category;
   return (
     <div className="categoryTableRow">
       <div className="categoryTableRow__nameColumn">
@@ -23,7 +23,7 @@ const CategoryTableRow = (props) => {
           <div style={{ width: '70%', background: color }} />
         </div>
       </div>
-      <CategoryTableRowOptionsMenu />
+      <CategoryTableRowOptionsMenu _id={_id} />
     </div>
   );
 };

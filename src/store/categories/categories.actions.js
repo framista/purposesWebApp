@@ -74,7 +74,7 @@ export const changeSortingForCategory = (column) => (dispatch, getState) => {
   });
 };
 
-const setSelectedCategories = (categoriesIds) => ({
+export const setSelectedCategories = (categoriesIds) => ({
   type: AT.SET_SELECTED_CATEGORIES,
   payload: categoriesIds,
 });

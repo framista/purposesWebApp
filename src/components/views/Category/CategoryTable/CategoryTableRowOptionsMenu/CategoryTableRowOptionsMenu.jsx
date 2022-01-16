@@ -1,30 +1,28 @@
-import React from 'react';
-import { MdEditNote, MdDeleteForever } from 'react-icons/md';
+import React, { useMemo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { OptionsMenu } from '../../../../common/Layout';
+import { getCategoryMenuOptions } from './CategoryTableRowOptionsMenu.helpers';
 
 import './CategoryTableRowOptionsMenu.scss';
 
-const CategoryTableRowOptionsMenu = () => {
-  const options = [
-    {
-      name: 'Edit',
-      icon: <MdEditNote />,
-      disabled: true,
-      onClick: () => console.log('edit'),
-    },
-    {
-      name: 'Delete',
-      icon: <MdDeleteForever />,
-      disabled: false,
-      onClick: () => console.log('del'),
-    },
-  ];
+const CategoryTableRowOptionsMenu = ({ _id, setSelectedCategories }) => {
+  const navigate = useNavigate();
+
+  const selectCategoryToShow = useCallback(() => {
+    setSelectedCategories([_id]);
+    navigate('/task');
+  }, [_id]);
+
+  const options = useMemo(
+    () => getCategoryMenuOptions(selectCategoryToShow),
+    [selectCategoryToShow]
+  );
   return (
     <div className="categoryTableRowOptionsMenu">
-      <OptionsMenu options={options} />
+      <OptionsMenu options={options} minWidth={120} />
     </div>
   );
 };
 
-export default CategoryTableRowOptionsMenu;
+export default React.memo(CategoryTableRowOptionsMenu);
