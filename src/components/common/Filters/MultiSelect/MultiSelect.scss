@@ -20,23 +20,27 @@
     background-color: var(--card-background-color);
     border: 1px solid var(--contrast-focus);
     border-radius: 10px;
+    padding-bottom: 15px;
     .searchInput {
       margin: 10px;
     }
     z-index: 100;
   }
   &__scrollbar {
-    min-height: 100px;
-    max-height: 100px;
+    max-height: 200px;
   }
   &__option {
     display: flex;
     align-items: center;
     margin: 5px 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
     input[type='checkbox'] {
       width: 0.8rem;
       height: 0.8rem;
       font-size: 0.8rem;
+      margin-right: 10px;
     }
   }
 }
