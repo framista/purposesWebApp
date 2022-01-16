@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
   allCategories: state.categories.allCategories,
   sortingColumn: state.tasks.sortingColumn,
   sortingWay: state.tasks.sortingWay,
+  selectedCategories: state.categories.selectedCategories,
 });
 
 export default connect(mapStateToProps)(TaskTable);

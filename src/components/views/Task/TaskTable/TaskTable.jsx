@@ -10,8 +10,14 @@ import TaskTableRow from './TaskTableRow/TaskTableRow.redux';
 import './TaskTable.scss';
 
 const TaskTable = (props) => {
-  const { searchValue, allCategories, allTasks, sortingColumn, sortingWay } =
-    props;
+  const {
+    searchValue,
+    allCategories,
+    allTasks,
+    sortingColumn,
+    sortingWay,
+    selectedCategories,
+  } = props;
 
   const tasks = useMemo(
     () =>
@@ -20,9 +26,17 @@ const TaskTable = (props) => {
         allCategories,
         searchValue,
         sortingColumn,
-        sortingWay
+        sortingWay,
+        selectedCategories
       ),
-    [searchValue, allCategories, allTasks, sortingColumn, sortingWay]
+    [
+      searchValue,
+      allCategories,
+      allTasks,
+      sortingColumn,
+      sortingWay,
+      selectedCategories,
+    ]
   );
 
   return (
@@ -43,6 +57,7 @@ TaskTable.propTypes = {
   allTasks: PropTypes.shape({}),
   sortingColumn: PropTypes.string,
   sortingWay: PropTypes.string,
+  selectedCategories: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default TaskTable;
