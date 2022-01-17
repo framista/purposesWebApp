@@ -3,8 +3,7 @@ export const getInitialState = () => {
     category: {},
     task: {},
     points: 80,
-    description: '',
+    date: new Date().toISOString().slice(0, 10),
     errors: {},
-    date: new Date(),
   };
 };

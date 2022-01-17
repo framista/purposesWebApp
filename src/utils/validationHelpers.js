@@ -20,6 +20,15 @@ const schema = yup.object().shape({
     .object()
     .shape({ _id: yup.string().required('Category is required') })
     .required('Category is required'),
+  task: yup
+    .object()
+    .shape({ _id: yup.string().required('Task is required') })
+    .required('Task is required'),
+  date: yup
+    .string()
+    .test('date', 'Date is incorret', (val) =>
+      /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/.test(val)
+    ),
 });
 
 export default schema;

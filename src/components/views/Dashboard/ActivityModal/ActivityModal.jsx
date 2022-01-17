@@ -9,19 +9,37 @@ import { getInitialState } from './ActivityModal.helpers';
 import { createEvent } from '../../../../utils/inputHelpers';
 
 const ActivityModal = (props) => {
-  const { isOpen, hideModal, createTask, allCategories, allTasks } = props;
+  const { isOpen, hideModal, createActivity, allCategories, allTasks } = props;
   const [loading, setLoading] = useState(false);
   const [state, handlers] = useInputChange(getInitialState());
+
   const categoriesOptions = useMemo(
     () => Object.values(allCategories),
     [allCategories]
   );
-  const tasksOptions = [];
+
+  const tasksOptions = useMemo(
+    () =>
+      Object.values(allTasks).filter(
+        (task) => task.category_id === state.category._id
+      ),
+    [state, allTasks]
+  );
 
   const modalTitle = 'Add activity';
 
+  const changeCategory = useCallback((e) => {
+    handlers.changeInput(e);
+    handlers.changeInput(createEvent('task', {}));
+  }, []);
+
+  const changeTask = useCallback((e) => {
+    handlers.changeInput(e);
+    handlers.changeInput(createEvent('points', e.target.value.points));
+  }, []);
+
   const validateAll = async () => {
-    const inputs = ['task', 'category'];
+    const inputs = ['task', 'category', 'date'];
     const promises = inputs.map((input) =>
       handlers.validateInput(createEvent(input, state[input]))
     );
@@ -35,7 +53,7 @@ const ActivityModal = (props) => {
     if (!valid) return;
     try {
       setLoading(true);
-      await createTask(task);
+      await createActivity(task);
     } finally {
       setLoading(false);
       hideAndClear();
@@ -61,7 +79,7 @@ const ActivityModal = (props) => {
         placeholder="Choose category of your activity"
         labelText="Category"
         value={state.category}
-        onChange={handlers.changeInput}
+        onChange={changeCategory}
         options={categoriesOptions}
       />
       <Select
@@ -70,7 +88,7 @@ const ActivityModal = (props) => {
         placeholder="Choose task of your activity"
         labelText="Task"
         value={state.task}
-        onChange={handlers.changeInput}
+        onChange={changeTask}
         options={tasksOptions}
       />
       <Input
@@ -97,7 +115,7 @@ const ActivityModal = (props) => {
 ActivityModal.propTypes = {
   isOpen: PropTypes.bool,
   hideModal: PropTypes.func,
-  createTask: PropTypes.func,
+  createActivity: PropTypes.func,
 };
 
 export default ActivityModal;

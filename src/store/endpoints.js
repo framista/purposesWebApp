@@ -8,3 +8,6 @@ export const URL_CATEGORY = 'api/categories';
 
 // task
 export const URL_TASK = 'api/tasks';
+
+// activity
+export const URL_ACTIVITIES = 'api/activities';

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { ACTIVITY_MODAL } from '../../../../constants/modalTypes';
 import { hideModal } from '../../../../store/uiState/uiState.actions';
-import { createTask } from '../../../../store/tasks/tasks.actions';
+import { createActivity } from '../../../../store/activities/activities.actions';
 
 import ActivityModal from './ActivityModal';
 
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   hideModal,
-  createTask,
+  createActivity,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityModal);
