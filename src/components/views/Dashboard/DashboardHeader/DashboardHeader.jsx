@@ -10,14 +10,17 @@ import './DashboardHeader.scss';
 
 const DashboardHeader = ({
   showModal,
-  changeSearchValueForTask,
+  changeSearchValueForDashboard,
   searchValue,
 }) => {
   return (
     <div className="dashboardHeader">
       <div className="dashboardHeader__left">
         <h4 className="dashboardHeader__title">Dashboard</h4>
-        <SearchInput onChange={changeSearchValueForTask} value={searchValue} />
+        <SearchInput
+          onChange={changeSearchValueForDashboard}
+          value={searchValue}
+        />
         <CategoryMultiSelect />
       </div>
       <button
@@ -36,7 +39,7 @@ const DashboardHeader = ({
 DashboardHeader.propTypes = {
   searchValue: PropTypes.string,
   showModal: PropTypes.func,
-  changeSearchValueForTask: PropTypes.func,
+  changeSearchValueForDashboard: PropTypes.func,
 };
 
 export default React.memo(DashboardHeader);

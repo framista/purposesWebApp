@@ -8,7 +8,7 @@ const fetchTasksSuccessfully = (tasks) => ({
   payload: tasks,
 });
 
-const fetchTasks = (userId) => async (dispatch) => {
+export const fetchTasks = (userId) => async (dispatch) => {
   try {
     const result = await purposeApi(userId).get(URL_TASK);
     dispatch(fetchTasksSuccessfully(result.data));
