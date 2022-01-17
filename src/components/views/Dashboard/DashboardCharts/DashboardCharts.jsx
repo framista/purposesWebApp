@@ -11,7 +11,7 @@ const DashboardCharts = () => {
   return (
     <div className="dashboardCharts">
       <Radar height={'400px'} />
-      <RadialMultiple />
+      <RadialMultiple height={'400px'} />
       <TimelineMultiRange height={'400px'} />
     </div>
   );

@@ -5,13 +5,13 @@ import { COLOR_PRIMARY } from '../../../../constants/color';
 
 import './Radar.scss';
 
-const Radar = () => {
+const Radar = ({ height }) => {
   return (
     <div className="radar">
       <Chart
         series={[{ data: [10, 20, 50, 123] }]}
         type="radar"
-        height={'100%'}
+        height={height}
         options={{
           colors: [COLOR_PRIMARY],
           markers: {
