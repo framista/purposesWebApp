@@ -8,7 +8,7 @@ const fetchActivitiesSuccessfully = (activities) => ({
 });
 
 export const fetchActivities =
-  (userId, startDate = '2022-01-17', endDate = '2022-01-18') =>
+  (userId, startDate = '2022-01-14', endDate = '2022-01-18') =>
   async (dispatch) => {
     try {
       const result = await purposeApi(userId).get(URL_ACTIVITIES, {

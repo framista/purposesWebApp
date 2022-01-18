@@ -5,6 +5,7 @@ import ActivityModal from './ActivityModal/ActivityModal.redux';
 import DashboardCharts from './DashboardCharts/DashboardCharts.redux';
 import DashboardHeader from './DashboardHeader/DashboardHeader.redux';
 import { Loading } from '../../common/Layout';
+import DashboardTable from './DashboardTable/DashboardTable.redux';
 
 const Dashboard = (props) => {
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,14 @@ const Dashboard = (props) => {
       <ActivityModal />
       <div className="app__content">
         <DashboardHeader />
-        {loading ? <Loading /> : <DashboardCharts />}
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <DashboardCharts />
+            <DashboardTable />
+          </>
+        )}
       </div>
     </>
   );

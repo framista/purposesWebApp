@@ -1,4 +1,5 @@
 import * as AT from '../actionTypes';
+import { formatDate } from '../../utils/dateHelpers';
 
 const initialState = {
   allActivities: {},
@@ -19,7 +20,10 @@ const tasks = (state = initialState, action) => {
       return {
         ...state,
         allActivities: action.payload.reduce(
-          (prev, activity) => ({ ...prev, [activity._id]: activity }),
+          (prev, activity) => ({
+            ...prev,
+            [activity._id]: { ...activity, date: formatDate(activity.date) },
+          }),
           {}
         ),
       };

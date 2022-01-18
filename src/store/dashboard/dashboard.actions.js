@@ -20,3 +20,24 @@ export const changeSearchValueForDashboard = (searchText) => ({
   type: AT.CHANGE_SEARCH_VALUE_FOR_DASHBOARD,
   payload: searchText,
 });
+
+export const changeSortingForDashboard = (column) => (dispatch, getState) => {
+  const { sortingColumn, sortingWay } = getState().tasks;
+  let [newSortingColumn, newSortingWay] = ['', ''];
+
+  if (sortingColumn === column && sortingWay === 'asc') {
+    newSortingWay = '';
+    newSortingColumn = '';
+  } else if (sortingColumn !== column) {
+    newSortingColumn = column;
+    newSortingWay = 'desc';
+  } else {
+    newSortingColumn = column;
+    newSortingWay = 'asc';
+  }
+
+  dispatch({
+    type: AT.CHANGING_SORTING_FOR_DASHBOARD,
+    payload: { sortingColumn: newSortingColumn, sortingWay: newSortingWay },
+  });
+};

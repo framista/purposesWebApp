@@ -1,0 +1,12 @@
+.dashboardTableHeader {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  border-bottom: 2px solid var(--contrast-focus);
+  padding: 15px 0;
+
+  &__cell {
+    display: flex;
+    align-items: center;
+  }
+}
