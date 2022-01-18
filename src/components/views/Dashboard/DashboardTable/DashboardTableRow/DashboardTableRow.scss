@@ -6,10 +6,11 @@
   align-items: center;
   padding: 5px 0;
 
-  &__name {
+  &__taskName {
     font-weight: 500;
     margin: 0;
     font-size: 0.8rem;
+    padding-left: 20px;
   }
   &__date {
     margin: 0;

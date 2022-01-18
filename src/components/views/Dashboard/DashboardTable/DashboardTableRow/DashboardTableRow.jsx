@@ -11,7 +11,7 @@ const DashboardTableRow = (props) => {
 
   return (
     <div className="dashboardTableRow">
-      <p className="dashboardTableRow__name">{task.name}</p>
+      <p className="dashboardTableRow__taskName">{task.name}</p>
       <div className="dashboardTableRow__categoryColumn">
         <span
           className="dashboardTableRow__dot"
