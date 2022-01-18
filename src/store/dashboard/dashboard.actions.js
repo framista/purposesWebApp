@@ -22,7 +22,7 @@ export const changeSearchValueForDashboard = (searchText) => ({
 });
 
 export const changeSortingForDashboard = (column) => (dispatch, getState) => {
-  const { sortingColumn, sortingWay } = getState().tasks;
+  const { sortingColumn, sortingWay } = getState().dashboard;
   let [newSortingColumn, newSortingWay] = ['', ''];
 
   if (sortingColumn === column && sortingWay === 'asc') {
