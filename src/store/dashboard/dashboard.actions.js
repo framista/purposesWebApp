@@ -1,6 +1,9 @@
 import * as AT from '../actionTypes';
 import { fetchActivities } from '../activities/activities.actions';
-import { fetchCategories } from '../categories/categories.actions';
+import {
+  fetchCategories,
+  selectAllCategorieries,
+} from '../categories/categories.actions';
 import { fetchTasks } from '../tasks/tasks.actions';
 
 export const getDashboardRouteData = () => async (dispatch, getState) => {
@@ -11,6 +14,7 @@ export const getDashboardRouteData = () => async (dispatch, getState) => {
     promises.push(dispatch(fetchTasks(currentUser.id)));
     promises.push(dispatch(fetchActivities(currentUser.id)));
     await Promise.all(promises);
+    dispatch(selectAllCategorieries());
   } catch (err) {
     console.log(err);
   }
