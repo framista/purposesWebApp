@@ -10,6 +10,7 @@ import About from '../../components/views/About/About';
 import Auth from '../../components/views/Auth/Auth.redux';
 import Category from '../../components/views/Category/Category.redux';
 import Task from '../../components/views/Task/Task.redux';
+import NotFound from '../../components/views/NotFound/NotFound';
 
 const AllRoutes = () => {
   return (
@@ -42,14 +43,7 @@ const AllRoutes = () => {
           </RequireAuth>
         }
       />
-      <Route
-        path="*"
-        element={
-          <main style={{ padding: '1rem' }}>
-            <p>There's nothing here!</p>
-          </main>
-        }
-      />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
