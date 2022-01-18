@@ -4,6 +4,7 @@ const initialState = {
   mode: 'dark',
   modalType: '',
   modalProps: {},
+  sidebarOpen: false,
 };
 
 const uiState = (state = initialState, action) => {
@@ -19,6 +20,12 @@ const uiState = (state = initialState, action) => {
     }
     case AT.HIDE_MODAL: {
       return { ...state, modalType: '', modalProps: {} };
+    }
+    case AT.TOGGLE_SIDEBAR_OPEN: {
+      return { ...state, sidebarOpen: !state.sidebarOpen };
+    }
+    case AT.SET_SIDEBAR_OPEN: {
+      return { ...state, sidebarOpen: action.payload };
     }
     default:
       return state;

@@ -1,11 +1,17 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { MdDarkMode, MdWbSunny } from 'react-icons/md';
+import { MdDarkMode, MdWbSunny, MdMenu } from 'react-icons/md';
 
 import './Header.scss';
 
-const Header = ({ logged, toogleUiStateMode, uiStateMode, logoutUser }) => {
+const Header = ({
+  logged,
+  toogleUiStateMode,
+  uiStateMode,
+  logoutUser,
+  toggleSidebarOpen,
+}) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -26,6 +32,9 @@ const Header = ({ logged, toogleUiStateMode, uiStateMode, logoutUser }) => {
       <div className="header__options">
         <div onClick={toogleUiStateMode} className="header__mode">
           {uiStateMode === 'dark' ? <MdWbSunny /> : <MdDarkMode />}
+        </div>
+        <div className="header__toggleSidebar" onClick={toggleSidebarOpen}>
+          <MdMenu />
         </div>
         {logged ? (
           <button
@@ -49,6 +58,7 @@ Header.propTypes = {
   logged: PropTypes.bool,
   uiStateMode: PropTypes.string,
   logoutUser: PropTypes.func,
+  toggleSidebarOpen: PropTypes.func,
 };
 
 export default React.memo(Header);

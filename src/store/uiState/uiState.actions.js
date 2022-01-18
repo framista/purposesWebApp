@@ -21,3 +21,12 @@ export const showModal = (modalType, modalProps = {}) => ({
 export const hideModal = () => ({
   type: AT.HIDE_MODAL,
 });
+
+export const toggleSidebarOpen = () => ({
+  type: AT.TOGGLE_SIDEBAR_OPEN,
+});
+
+export const setSidebarOpen = (isOpen) => ({
+  type: AT.SET_SIDEBAR_OPEN,
+  payload: isOpen,
+});

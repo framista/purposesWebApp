@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import classnames from 'classnames';
 
-import { sidebarOptions } from './Sidebar.helpers';
+import { sidebarOptions, widthForChanges } from './Sidebar.helpers';
+import { useWindowSize } from '../../../../hooks';
 
 import './Sidebar.scss';
 
-const Sidebar = ({ logged }) => {
+const Sidebar = ({ logged, sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
+  const [width] = useWindowSize();
+
+  useEffect(() => {
+    const newIsOpen = width > widthForChanges;
+    setSidebarOpen(newIsOpen);
+  }, [width]);
+
   if (!logged) return null;
+
+  if (!sidebarOpen) return null;
 
   return (
     <div className="sidebar">
@@ -22,8 +32,12 @@ const Sidebar = ({ logged }) => {
             to={option.destination}
             className={optionClassName}
             key={option.id}
+            onClick={() => {
+              if (width < widthForChanges) setSidebarOpen(false);
+            }}
           >
             <div className="sidebar__icon">{option.icon}</div>
+            <div className="sidebar__name">{option.name}</div>
           </Link>
         );
       })}
@@ -33,6 +47,7 @@ const Sidebar = ({ logged }) => {
 
 Sidebar.propTypes = {
   logged: PropTypes.bool,
+  setSidebarOpen: PropTypes.bool,
 };
 
 export default React.memo(Sidebar);

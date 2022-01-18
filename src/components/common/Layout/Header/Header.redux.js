@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 
 import Header from './Header';
 
-import { toogleUiStateMode } from '../../../../store/uiState/uiState.actions';
+import {
+  toogleUiStateMode,
+  toggleSidebarOpen,
+} from '../../../../store/uiState/uiState.actions';
 import { logoutUser } from '../../../../store/currentUser/currentUser.actions';
 
 const mapStateToProps = (state) => ({
@@ -13,6 +16,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   toogleUiStateMode,
   logoutUser,
+  toggleSidebarOpen,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
