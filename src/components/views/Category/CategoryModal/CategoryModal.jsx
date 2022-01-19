@@ -18,7 +18,7 @@ const CategoryModal = (props) => {
       handlers.updateState(getUpdatedState(selectedCategory));
   }, [selectedCategory._id]);
 
-  const modalTitle = 'Add category for your new purpose';
+  const modalTitle = `${selectedCategory._id ? 'Edit' : 'Add'} category`;
 
   const validateAll = async () => {
     const inputs = ['categoryName', 'description'];
