@@ -9,7 +9,13 @@ import { getInitialState, getUpdatedState } from './CategoryModal.helpers';
 import { createEvent } from '../../../../utils/inputHelpers';
 
 const CategoryModal = (props) => {
-  const { isOpen, hideModal, createCategory, selectedCategory } = props;
+  const {
+    isOpen,
+    hideModal,
+    createCategory,
+    selectedCategory,
+    updateCategory,
+  } = props;
   const [loading, setLoading] = useState(false);
   const [state, handlers] = useInputChange(getInitialState());
 
@@ -35,7 +41,11 @@ const CategoryModal = (props) => {
     if (!valid) return;
     try {
       setLoading(true);
-      await createCategory(category);
+      if (selectedCategory._id) {
+        await updateCategory(category);
+      } else {
+        await createCategory(category);
+      }
     } finally {
       setLoading(false);
       hideAndClear();
@@ -95,6 +105,8 @@ CategoryModal.propTypes = {
   isOpen: PropTypes.bool,
   hideModal: PropTypes.func,
   createCategory: PropTypes.func,
+  selectedCategory: PropTypes.shape({}),
+  updateCategory: PropTypes.func,
 };
 
 export default CategoryModal;

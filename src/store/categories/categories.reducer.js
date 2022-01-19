@@ -20,6 +20,15 @@ const categories = (state = initialState, action) => {
         },
       };
     }
+    case AT.UPDATE_CATEGORY_SUCCESSFULLY: {
+      return {
+        ...state,
+        allCategories: {
+          ...state.allCategories,
+          [action.payload._id]: action.payload,
+        },
+      };
+    }
     case AT.FETCH_CATEGORIES_SUCCESSFULLY: {
       return {
         ...state,

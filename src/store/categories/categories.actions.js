@@ -48,6 +48,26 @@ export const createCategory = (category) => async (dispatch, getState) => {
   }
 };
 
+const updateCategorySuccessfully = (category) => ({
+  type: AT.UPDATE_CATEGORY_SUCCESSFULLY,
+  payload: category,
+});
+
+export const updateCategory = (category) => async (dispatch, getState) => {
+  const { currentUser } = getState();
+  try {
+    const { categoryName: name, _id, ...restCategory } = category;
+    const updatedCategory = { ...restCategory, name };
+    await purposeApi(currentUser.id).put(
+      `${URL_CATEGORY}/${category._id}`,
+      updatedCategory
+    );
+    dispatch(updateCategorySuccessfully({ ...updatedCategory, _id }));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const changeSearchValueForCategory = (searchText) => ({
   type: AT.CHANGE_SEARCH_VALUE_FOR_CATEGORY,
   payload: searchText,

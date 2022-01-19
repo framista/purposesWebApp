@@ -11,11 +11,10 @@ export const getInitialState = () => {
 };
 
 export const getUpdatedState = (selectedCategory) => {
+  const { name: categoryName, ...rest } = selectedCategory;
   return {
-    categoryName: selectedCategory.name,
-    color: selectedCategory.color,
-    points: selectedCategory.points,
-    description: selectedCategory.description,
+    ...rest,
+    categoryName,
     errors: {},
   };
 };
