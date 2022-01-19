@@ -19,7 +19,7 @@
 
   @media screen and (min-width: 480px) {
     grid-template-columns: repeat(5, 1fr);
-    &__categoryColumn {
+    &__categoryName {
       display: block;
     }
   }
