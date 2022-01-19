@@ -6,6 +6,7 @@ import { getRelevantTasks } from './TaskTable.helpers';
 
 import TaskTableHeader from './TaskTableHeader/TaskTableHeader.redux';
 import TaskTableRow from './TaskTableRow/TaskTableRow.redux';
+import { NoData } from '../../../common/Layout';
 
 import './TaskTable.scss';
 
@@ -42,11 +43,15 @@ const TaskTable = (props) => {
   return (
     <div className="taskTable">
       <TaskTableHeader />
-      <OverlayScrollbarsComponent className="taskTable__scrollbar">
-        {tasks.map((task) => (
-          <TaskTableRow key={task._id} task={task} />
-        ))}
-      </OverlayScrollbarsComponent>
+      {tasks.length === 0 ? (
+        <NoData text="No data to display. Add task or change filters" />
+      ) : (
+        <OverlayScrollbarsComponent className="taskTable__scrollbar">
+          {tasks.map((task) => (
+            <TaskTableRow key={task._id} task={task} />
+          ))}
+        </OverlayScrollbarsComponent>
+      )}
     </div>
   );
 };

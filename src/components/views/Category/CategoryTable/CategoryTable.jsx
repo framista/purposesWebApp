@@ -6,6 +6,7 @@ import { getRelevantCategories } from './CategoryTable.helpers';
 
 import CategoryTableHeader from './CategoryTableHeader/CategoryTableHeader.redux';
 import CategoryTableRow from './CategoryTableRow/CategoryTableRow.redux';
+import { NoData } from '../../../common/Layout';
 
 import './CategoryTable.scss';
 
@@ -26,11 +27,15 @@ const CategoryTable = (props) => {
   return (
     <div className="categoryTable">
       <CategoryTableHeader />
-      <OverlayScrollbarsComponent className="categoryTable__scrollbar">
-        {categories.map((category) => (
-          <CategoryTableRow key={category._id} category={category} />
-        ))}
-      </OverlayScrollbarsComponent>
+      {categories.length === 0 ? (
+        <NoData text="No data to display. Add category or change filters" />
+      ) : (
+        <OverlayScrollbarsComponent className="categoryTable__scrollbar">
+          {categories.map((category) => (
+            <CategoryTableRow key={category._id} category={category} />
+          ))}
+        </OverlayScrollbarsComponent>
+      )}
     </div>
   );
 };

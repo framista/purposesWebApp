@@ -1,0 +1,19 @@
+.noData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  padding: 30px;
+  img {
+    display: block;
+    width: min(300px, 90%);
+    height: min(300px, 90%);
+  }
+  &__text {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    text-align: center;
+  }
+}

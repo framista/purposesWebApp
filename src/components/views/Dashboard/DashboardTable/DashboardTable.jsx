@@ -6,6 +6,7 @@ import { getRelevantActivities } from './Dashboard.helpers';
 
 import DashboardTableHeader from './DashboardTableHeader/DashboardTableHeader.redux';
 import DashboardTableRow from './DashboardTableRow/DashboardTableRow.redux';
+import { NoData } from '../../../common/Layout';
 
 import './DashboardTable.scss';
 
@@ -45,11 +46,15 @@ const DashboardTable = (props) => {
   return (
     <div className="dashboardTable">
       <DashboardTableHeader />
-      <OverlayScrollbarsComponent className="dashboardTable__scrollbar">
-        {activities.map((activity) => (
-          <DashboardTableRow key={activity._id} activity={activity} />
-        ))}
-      </OverlayScrollbarsComponent>
+      {activities.length === 0 ? (
+        <NoData text="No data to display. Add activity or change filters" />
+      ) : (
+        <OverlayScrollbarsComponent className="dashboardTable__scrollbar">
+          {activities.map((activity) => (
+            <DashboardTableRow key={activity._id} activity={activity} />
+          ))}
+        </OverlayScrollbarsComponent>
+      )}
     </div>
   );
 };
