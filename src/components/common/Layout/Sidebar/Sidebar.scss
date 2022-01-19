@@ -19,6 +19,9 @@
     align-items: center;
     border-radius: 15px;
     padding: 10px 20px;
+    &--selected {
+      background-color: var(--primary-focus);
+    }
   }
   &__icon {
     box-shadow: 1px 0px 7px 0px rgba(88, 66, 90, 1);
@@ -28,9 +31,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    &--selected {
-      background-color: var(--primary-focus);
-    }
   }
   &__name {
     margin-left: 15px;
