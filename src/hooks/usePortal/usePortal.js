@@ -9,7 +9,7 @@ const usePortal = (contentRef, parentRef, translation = { x: 0, y: 0 }) => {
 
     setCoords({
       left: (parentRef?.current?.offsetLeft || rect.x) - translation.x,
-      top: (parentRef?.current?.offsetTop || rect.y) + translation.y,
+      top: (parentRef?.current?.offsetTop || rect.y + window.scrollY) + translation.y,
     });
   };
 
