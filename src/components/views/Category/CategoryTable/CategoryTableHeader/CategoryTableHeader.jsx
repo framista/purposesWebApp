@@ -24,12 +24,10 @@ const CategoryTableHeader = ({
         {sortingArrow(sortingColumn, sortingWay, 'name')}
       </div>
       <div
-        className="categoryTableHeader__cell"
+        className="categoryTableHeader__cell categoryTableHeader__description"
         onClick={() => changeSortingForCategory('description')}
       >
-        <small className="secondary categoryTableHeader__description">
-          Description
-        </small>
+        <small className="secondary">Description</small>
         {sortingArrow(sortingColumn, sortingWay, 'description')}
       </div>
       <div

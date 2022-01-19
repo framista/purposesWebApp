@@ -3,12 +3,15 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+  flex-wrap: wrap;
+  row-gap: 10px;
   &__left {
     display: flex;
     align-items: center;
   }
   &__title {
     margin: 0;
+    margin-right: 30px;
   }
   &__button {
     max-width: 140px;

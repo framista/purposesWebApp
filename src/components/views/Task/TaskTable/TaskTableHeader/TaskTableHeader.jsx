@@ -24,12 +24,10 @@ const TaskTableHeader = ({
         {sortingArrow(sortingColumn, sortingWay, 'name')}
       </div>
       <div
-        className="taskTableHeader__cell"
+        className="taskTableHeader__cell taskTableHeader__description"
         onClick={() => changeSortingForTask('description')}
       >
-        <small className="secondary taskTableHeader__description">
-          Description
-        </small>
+        <small className="secondary">Description</small>
         {sortingArrow(sortingColumn, sortingWay, 'description')}
       </div>
       <div

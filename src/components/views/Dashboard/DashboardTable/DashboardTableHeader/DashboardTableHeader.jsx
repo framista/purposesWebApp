@@ -24,7 +24,7 @@ const DashboardTableHeader = ({
         {sortingArrow(sortingColumn, sortingWay, 'taskName')}
       </div>
       <div
-        className="dashboardTableHeader__cell"
+        className="dashboardTableHeader__cell dashboardTableHeader__categoryName"
         onClick={() => changeSortingForDashboard('categoryName')}
       >
         <small className="secondary">Category</small>

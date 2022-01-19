@@ -1,6 +1,6 @@
 .dashboardTableHeader {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   border-bottom: 2px solid var(--contrast-focus);
   padding: 15px 0;
@@ -10,6 +10,17 @@
     align-items: center;
     &:first-child {
       padding-left: 20px;
+    }
+  }
+
+  &__categoryName {
+    display: none;
+  }
+
+  @media screen and (min-width: 480px) {
+    grid-template-columns: repeat(5, 1fr);
+    &__categoryColumn {
+      display: block;
     }
   }
 }
