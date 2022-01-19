@@ -1,17 +1,22 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Modal from '../../../common/Form/Modal/Modal.redux';
 import { Input, TextArea } from '../../../common/Form';
 
 import { useInputChange } from '../../../../hooks';
-import { getInitialState } from './CategoryModal.helpers';
+import { getInitialState, getUpdatedState } from './CategoryModal.helpers';
 import { createEvent } from '../../../../utils/inputHelpers';
 
 const CategoryModal = (props) => {
-  const { isOpen, hideModal, createCategory } = props;
+  const { isOpen, hideModal, createCategory, selectedCategory } = props;
   const [loading, setLoading] = useState(false);
   const [state, handlers] = useInputChange(getInitialState());
+
+  useEffect(() => {
+    if (selectedCategory._id)
+      handlers.updateState(getUpdatedState(selectedCategory));
+  }, [selectedCategory._id]);
 
   const modalTitle = 'Add category for your new purpose';
 

@@ -6,7 +6,11 @@ import { getCategoryMenuOptions } from './CategoryTableRowOptionsMenu.helpers';
 
 import './CategoryTableRowOptionsMenu.scss';
 
-const CategoryTableRowOptionsMenu = ({ _id, setSelectedCategories }) => {
+const CategoryTableRowOptionsMenu = ({
+  _id,
+  setSelectedCategories,
+  showModal,
+}) => {
   const navigate = useNavigate();
 
   const selectCategoryToShow = useCallback(() => {
@@ -15,8 +19,8 @@ const CategoryTableRowOptionsMenu = ({ _id, setSelectedCategories }) => {
   }, [_id]);
 
   const options = useMemo(
-    () => getCategoryMenuOptions(selectCategoryToShow),
-    [selectCategoryToShow]
+    () => getCategoryMenuOptions(_id, selectCategoryToShow, showModal),
+    [selectCategoryToShow, _id]
   );
   return (
     <div className="categoryTableRowOptionsMenu">

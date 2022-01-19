@@ -8,6 +8,8 @@ import CategoryModal from './CategoryModal';
 
 const mapStateToProps = (state) => ({
   isOpen: state.uiState.modalType === CATEGORY_MODAL,
+  selectedCategory:
+    state.categories.allCategories[state.uiState.modalProps._id] || {},
 });
 
 const mapDispatchToProps = {

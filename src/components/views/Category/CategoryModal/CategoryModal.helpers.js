@@ -9,3 +9,13 @@ export const getInitialState = () => {
     errors: {},
   };
 };
+
+export const getUpdatedState = (selectedCategory) => {
+  return {
+    categoryName: selectedCategory.name,
+    color: selectedCategory.color,
+    points: selectedCategory.points,
+    description: selectedCategory.description,
+    errors: {},
+  };
+};
