@@ -1,6 +1,6 @@
 .dashboardCharts {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   & > * {
     box-shadow: 1px 1px 34px -17px rgba(89, 24, 69, 1);

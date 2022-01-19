@@ -1,8 +1,9 @@
 import React from 'react';
 import {
-  TimelineMultiRange,
-  RadialMultiple,
+  Area,
   Radar,
+  RadialMultiple,
+  TimelineMultiRange,
 } from '../../../common/Charts';
 
 import './DashboardCharts.scss';
@@ -12,6 +13,7 @@ const DashboardCharts = () => {
     <div className="dashboardCharts">
       <Radar height={'400px'} />
       <RadialMultiple height={'400px'} />
+      <Area height={'400px'} />
       <TimelineMultiRange height={'400px'} />
     </div>
   );

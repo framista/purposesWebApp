@@ -24,14 +24,14 @@ const Radar = ({ height }) => {
             categories: ['Apples', 'Oranges', 'Bananas', 'Berries'],
             labels: {
               style: {
-                cssClass: 'timelineMultiRange__label',
+                cssClass: 'radar__label',
               },
             },
           },
           yaxis: {
             labels: {
               style: {
-                cssClass: 'timelineMultiRange__label',
+                cssClass: 'radar__label',
               },
             },
           },
