@@ -11,7 +11,12 @@ const fetchCategoriesSuccessfully = (categories) => ({
 export const fetchCategories = (userId) => async (dispatch) => {
   try {
     const result = await purposeApi(userId).get(URL_CATEGORY);
-    dispatch(fetchCategoriesSuccessfully(result.data));
+    const { categories, pointsObj } = result.data;
+    const data = categories.map((category) => ({
+      ...category,
+      currentWeekPoints: pointsObj[category._id] || 0,
+    }));
+    dispatch(fetchCategoriesSuccessfully(data));
   } catch (err) {
     console.log(err);
   }
