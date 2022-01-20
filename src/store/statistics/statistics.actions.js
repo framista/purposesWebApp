@@ -1,53 +1,11 @@
 import * as AT from '../actionTypes';
 import { purposeApi } from '../../services/purposeApi';
 import { URL_STATISTICS } from '../endpoints';
+import { getDates } from '../../utils/dateHelpers';
 import {
-  getDates,
-  getEndOfDate,
-  getStartOfDate,
-} from '../../utils/dateHelpers';
-
-const formatDailyPoints = (dailyPoints, dates) => {
-  const dataObject = dailyPoints.reduce(
-    (obj, dailyData) => ({
-      ...obj,
-      [dailyData._id]: dailyData.totalDailyPoints,
-    }),
-    {}
-  );
-  return dates.map((date) => dataObject[date] || 0);
-};
-
-const getEmptyCategoryData = (category) => ({
-  x: category.name,
-  y: [],
-  fillColor: category.color,
-  strokeColor: 'none',
-  _id: category._id,
-});
-
-const formatCategoriesWithDatesOfActivity = (
-  allCategories,
-  datesForCategories
-) => {
-  const dataObj = datesForCategories.reduce(
-    (prev, data) => ({
-      ...prev,
-      [data._id]: data.dates,
-    }),
-    {}
-  );
-  return Object.values(allCategories).reduce((allData, category) => {
-    const dataForCategories = dataObj[category._id]?.map((date) => ({
-      x: category.name,
-      y: [getStartOfDate(date).getTime(), getEndOfDate(date).getTime()],
-      fillColor: category.color,
-      strokeColor: 'none',
-      _id: category._id,
-    })) || [getEmptyCategoryData(category)];
-    return [...allData, ...dataForCategories];
-  }, []);
-};
+  formatCategoriesWithDatesOfActivity,
+  formatDailyPoints,
+} from './statistics.helpers';
 
 const fetchStatisticsSuccessfully = (data, dates) => (dispatch, getState) => {
   const { categories } = getState();
