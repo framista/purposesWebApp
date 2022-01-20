@@ -32,6 +32,8 @@ const DashboardCharts = ({
     return { labels, data, colors };
   }, [pointsCategorySummary, selectedCategories]);
 
+  if (selectedCategories.length === 0) return null;
+
   return (
     <div className="dashboardCharts">
       <Radar height={'400px'} data={pointsData} />

@@ -17,7 +17,8 @@ const fetchStatisticsSuccessfully = (data, dates) => (dispatch, getState) => {
       dailyPoints: formatDailyPoints(data.dailyPoints, dates),
       datesForCategories: formatCategoriesWithDatesOfActivity(
         allCategories,
-        data.datesForCategories
+        data.datesForCategories,
+        dates[0],
       ),
       pointsCategorySummary: formatCategoryPoints(
         allCategories,

@@ -12,9 +12,9 @@ export const formatDailyPoints = (dailyPoints, dates) => {
   return dates.map((date) => dataObject[date] || 0);
 };
 
-const getEmptyCategoryData = (category) => ({
+const getEmptyCategoryData = (category, date) => ({
   x: category.name,
-  y: [],
+  y: [getStartOfDate(date).getTime(), getStartOfDate(date).getTime()],
   fillColor: category.color,
   strokeColor: 'none',
   _id: category._id,
@@ -22,7 +22,8 @@ const getEmptyCategoryData = (category) => ({
 
 export const formatCategoriesWithDatesOfActivity = (
   allCategories,
-  datesForCategories
+  datesForCategories,
+  firstDate,
 ) => {
   const dataObj = datesForCategories.reduce(
     (prev, data) => ({
@@ -38,7 +39,7 @@ export const formatCategoriesWithDatesOfActivity = (
       fillColor: category.color,
       strokeColor: 'none',
       _id: category._id,
-    })) || [getEmptyCategoryData(category)];
+    })) || [getEmptyCategoryData(category, firstDate)];
     return [...allData, ...dataForCategories];
   }, []);
 };
