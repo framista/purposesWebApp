@@ -23,6 +23,7 @@ const getEmptyCategoryData = (category) => ({
   y: [],
   fillColor: category.color,
   strokeColor: 'none',
+  _id: category._id,
 });
 
 const formatCategoriesWithDatesOfActivity = (
@@ -42,6 +43,7 @@ const formatCategoriesWithDatesOfActivity = (
       y: [getStartOfDate(date).getTime(), getEndOfDate(date).getTime()],
       fillColor: category.color,
       strokeColor: 'none',
+      _id: category._id,
     })) || [getEmptyCategoryData(category)];
     return [...allData, ...dataForCategories];
   }, []);
