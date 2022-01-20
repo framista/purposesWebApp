@@ -43,7 +43,7 @@ const Area = ({ height, data }) => {
 
 Area.propTypes = {
   data: PropTypes.arrayOf(PropTypes.number),
-  height: PropTypes.number,
+  height: PropTypes.string,
 };
 
 export default Area;

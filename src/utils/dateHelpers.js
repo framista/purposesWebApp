@@ -11,3 +11,15 @@ export const getDates = (startDate, endDate) => {
   dates = [...dates, endDate];
   return dates;
 };
+
+export const getStartOfDate = (date) => {
+  const newDate = new Date(date);
+  newDate.setUTCHours(0, 0, 0, 0);
+  return newDate;
+};
+
+export const getEndOfDate = (date) => {
+  const newDate = new Date(date);
+  newDate.setUTCHours(23, 59, 59, 999);
+  return newDate;
+};

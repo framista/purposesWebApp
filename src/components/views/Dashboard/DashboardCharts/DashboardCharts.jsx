@@ -8,13 +8,13 @@ import {
 
 import './DashboardCharts.scss';
 
-const DashboardCharts = ({ dailyPoints }) => {
+const DashboardCharts = ({ dailyPoints, datesForCategories }) => {
   return (
     <div className="dashboardCharts">
       <Radar height={'400px'} />
       <RadialMultiple height={'400px'} />
       <Area height={'400px'} data={dailyPoints} />
-      <TimelineMultiRange height={'400px'} />
+      <TimelineMultiRange height={'400px'} data={datesForCategories} />
     </div>
   );
 };
