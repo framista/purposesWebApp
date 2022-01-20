@@ -2,7 +2,7 @@ import * as AT from '../actionTypes';
 
 const initialState = {
   dailyPoints: [],
-  categorySummary: [],
+  pointsCategorySummary: {},
   datesForCategories: [],
 };
 

@@ -5,11 +5,11 @@ import { COLOR_PRIMARY } from '../../../../constants/color';
 
 import './Radar.scss';
 
-const Radar = ({ height }) => {
+const Radar = ({ height, data }) => {
   return (
     <div className="radar">
       <Chart
-        series={[{ data: [10, 20, 50, 123] }]}
+        series={[{ data: data.data }]}
         type="radar"
         height={height}
         options={{
@@ -21,7 +21,7 @@ const Radar = ({ height }) => {
             strokeWidth: 2,
           },
           xaxis: {
-            categories: ['Apples', 'Oranges', 'Bananas', 'Berries'],
+            categories: data.labels,
             labels: {
               style: {
                 cssClass: 'radar__label',

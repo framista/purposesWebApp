@@ -12,6 +12,7 @@ const DashboardCharts = ({
   dailyPoints,
   datesForCategories,
   selectedCategories,
+  pointsCategorySummary,
 }) => {
   const timelineChartData = useMemo(
     () =>
@@ -19,10 +20,22 @@ const DashboardCharts = ({
     [selectedCategories, datesForCategories]
   );
 
+  const pointsData = useMemo(() => {
+    const [labels, data, colors] = [[], [], []];
+    selectedCategories.forEach((categoryId) => {
+      const { name, points, totalPoints, color } =
+        pointsCategorySummary[categoryId];
+      labels.push(name);
+      data.push(((points / totalPoints) * 100).toFixed(0));
+      colors.push(color);
+    });
+    return { labels, data, colors };
+  }, [pointsCategorySummary, selectedCategories]);
+
   return (
     <div className="dashboardCharts">
-      <Radar height={'400px'} />
-      <RadialMultiple height={'400px'} />
+      <Radar height={'400px'} data={pointsData} />
+      <RadialMultiple height={'400px'} data={pointsData} />
       <Area height={'400px'} data={dailyPoints} />
       <TimelineMultiRange height={'400px'} data={timelineChartData} />
     </div>

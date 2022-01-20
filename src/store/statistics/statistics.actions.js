@@ -4,6 +4,7 @@ import { URL_STATISTICS } from '../endpoints';
 import { getDates } from '../../utils/dateHelpers';
 import {
   formatCategoriesWithDatesOfActivity,
+  formatCategoryPoints,
   formatDailyPoints,
 } from './statistics.helpers';
 
@@ -18,12 +19,17 @@ const fetchStatisticsSuccessfully = (data, dates) => (dispatch, getState) => {
         allCategories,
         data.datesForCategories
       ),
+      pointsCategorySummary: formatCategoryPoints(
+        allCategories,
+        data.categorySummary,
+        dates.length
+      ),
     },
   });
 };
 
 export const fetchStatistics =
-  (userId, startDate = '2022-01-14', endDate = '2022-01-28') =>
+  (userId, startDate = '2022-01-17', endDate = '2022-01-23') =>
   async (dispatch) => {
     try {
       const dates = getDates(startDate, endDate);
