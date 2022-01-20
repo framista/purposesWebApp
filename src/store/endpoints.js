@@ -11,3 +11,6 @@ export const URL_TASK = 'api/tasks';
 
 // activity
 export const URL_ACTIVITIES = 'api/activities';
+
+// statistics
+export const URL_STATISTICS = 'api/statistics';

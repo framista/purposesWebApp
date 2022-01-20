@@ -1,16 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Chart from 'react-apexcharts';
 
 import './Area.scss';
 
-const Area = ({ height }) => {
+const Area = ({ height, data }) => {
   return (
     <div className="area">
       <Chart
         series={[
           {
             name: 'series1',
-            data: [31, 40, 28, 51, 42, 109, 100],
+            data,
           },
         ]}
         type="area"
@@ -37,6 +39,11 @@ const Area = ({ height }) => {
       />
     </div>
   );
+};
+
+Area.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.number),
+  height: PropTypes.number,
 };
 
 export default Area;

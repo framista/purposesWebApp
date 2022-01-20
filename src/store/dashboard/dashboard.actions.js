@@ -4,6 +4,7 @@ import {
   fetchCategories,
   selectAllCategorieries,
 } from '../categories/categories.actions';
+import { fetchStatistics } from '../statistics/statistics.actions';
 import { fetchTasks } from '../tasks/tasks.actions';
 
 export const getDashboardRouteData = () => async (dispatch, getState) => {
@@ -13,6 +14,7 @@ export const getDashboardRouteData = () => async (dispatch, getState) => {
     promises.push(dispatch(fetchCategories(currentUser.id)));
     promises.push(dispatch(fetchTasks(currentUser.id)));
     promises.push(dispatch(fetchActivities(currentUser.id)));
+    promises.push(dispatch(fetchStatistics(currentUser.id)));
     await Promise.all(promises);
     dispatch(selectAllCategorieries());
   } catch (err) {
