@@ -1,4 +1,4 @@
-export const formatDate = (date, addDays = 0) => {
+export const formatDate = (date = new Date(), addDays = 0) => {
   const newDate = new Date(date);
   newDate.setDate(newDate.getDate() + addDays);
   return newDate.toISOString().slice(0, 10);
@@ -41,4 +41,9 @@ export const getLastDayOfCurrentWeek = () => {
   const last = first + 6;
   const lastday = new Date(curr.setDate(last)).toUTCString();
   return formatDate(lastday);
+};
+
+export const formatShortDateToHumanDate = (date) => {
+  const [year, month, day] = date.split('-');
+  return `${day}.${month}.${year}`;
 };

@@ -1,6 +1,11 @@
 import { useState, useMemo, useEffect } from 'react';
 
-const usePortal = (contentRef, parentRef, translation = { x: 0, y: 0 }) => {
+const usePortal = (
+  contentRef,
+  parentRef,
+  translation = { x: 0, y: 0 },
+  onClose
+) => {
   const [open, setOpen] = useState(false);
   const [coords, setCoords] = useState({});
 
@@ -9,13 +14,16 @@ const usePortal = (contentRef, parentRef, translation = { x: 0, y: 0 }) => {
 
     setCoords({
       left: (parentRef?.current?.offsetLeft || rect.x) - translation.x,
-      top: (parentRef?.current?.offsetTop || rect.y + window.scrollY) + translation.y,
+      top:
+        (parentRef?.current?.offsetTop || rect.y + window.scrollY) +
+        translation.y,
     });
   };
 
   const handleClickOutside = (event) => {
     if (contentRef.current && !contentRef.current.contains(event.target)) {
       setOpen(false);
+      if (onClose) onClose();
     }
   };
 
@@ -33,8 +41,8 @@ const usePortal = (contentRef, parentRef, translation = { x: 0, y: 0 }) => {
         setOpen(true);
       },
       handleClose: () => {
-        setOpen(false)
-      }
+        setOpen(false);
+      },
     }),
     []
   );

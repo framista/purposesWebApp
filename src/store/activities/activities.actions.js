@@ -1,6 +1,7 @@
 import * as AT from '../actionTypes';
 import { purposeApi } from '../../services/purposeApi';
 import { URL_ACTIVITIES } from '../endpoints';
+import { fetchStatistics } from '../statistics/statistics.actions';
 
 const fetchActivitiesSuccessfully = (activities) => ({
   type: AT.FETCH_ACTIVITIES_SUCCESSFULLY,
@@ -8,11 +9,14 @@ const fetchActivitiesSuccessfully = (activities) => ({
 });
 
 export const fetchActivities =
-  (userId, startDate = '2022-01-14', endDate = '2022-01-18') =>
-  async (dispatch) => {
+  (startDate, endDate) => async (dispatch, getState) => {
     try {
-      const result = await purposeApi(userId).get(URL_ACTIVITIES, {
-        params: { startDate, endDate },
+      const { dates, currentUser } = getState();
+      const result = await purposeApi(currentUser.id).get(URL_ACTIVITIES, {
+        params: {
+          startDate: startDate || dates.startDate,
+          endDate: endDate || dates.endDate,
+        },
       });
       dispatch(fetchActivitiesSuccessfully(result.data));
     } catch (err) {
@@ -39,6 +43,7 @@ export const createActivity = (activity) => async (dispatch, getState) => {
       newActivity
     );
     dispatch(createActivitySuccessfully(newActivity, result.data.id));
+    Promise.all([dispatch(fetchActivities()), dispatch(fetchStatistics())]);
   } catch (err) {
     console.log(err);
   }

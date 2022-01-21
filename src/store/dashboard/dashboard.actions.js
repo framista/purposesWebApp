@@ -13,8 +13,8 @@ export const getDashboardRouteData = () => async (dispatch, getState) => {
     const promises = [];
     promises.push(dispatch(fetchCategories(currentUser.id)));
     promises.push(dispatch(fetchTasks(currentUser.id)));
-    promises.push(dispatch(fetchActivities(currentUser.id)));
-    promises.push(dispatch(fetchStatistics(currentUser.id)));
+    promises.push(dispatch(fetchActivities()));
+    promises.push(dispatch(fetchStatistics()));
     await Promise.all(promises);
     dispatch(selectAllCategorieries());
   } catch (err) {

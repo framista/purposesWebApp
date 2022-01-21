@@ -18,7 +18,7 @@ const fetchStatisticsSuccessfully = (data, dates) => (dispatch, getState) => {
       datesForCategories: formatCategoriesWithDatesOfActivity(
         allCategories,
         data.datesForCategories,
-        dates[0],
+        dates[0]
       ),
       pointsCategorySummary: formatCategoryPoints(
         allCategories,
@@ -30,14 +30,16 @@ const fetchStatisticsSuccessfully = (data, dates) => (dispatch, getState) => {
 };
 
 export const fetchStatistics =
-  (userId, startDate = '2022-01-17', endDate = '2022-01-23') =>
-  async (dispatch) => {
+  (startDate, endDate) => async (dispatch, getState) => {
     try {
-      const dates = getDates(startDate, endDate);
-      const result = await purposeApi(userId).get(URL_STATISTICS, {
-        params: { startDate, endDate },
+      const { currentUser, dates } = getState();
+      const start = startDate || dates.startDate;
+      const end = endDate || dates.endDate;
+      const datesArray = getDates(startDate, endDate);
+      const result = await purposeApi(currentUser.id).get(URL_STATISTICS, {
+        params: { startDate: start, endDate: end },
       });
-      dispatch(fetchStatisticsSuccessfully(result.data, dates));
+      dispatch(fetchStatisticsSuccessfully(result.data, datesArray));
     } catch (err) {
       console.log(err);
     }

@@ -12,6 +12,7 @@ const DashboardHeader = ({
   showModal,
   changeSearchValueForDashboard,
   searchValue,
+  getDashboardRouteData,
 }) => {
   return (
     <div className="dashboardHeader">
@@ -22,7 +23,7 @@ const DashboardHeader = ({
           value={searchValue}
         />
         <CategoryMultiSelect />
-        <RangeCalendar />
+        <RangeCalendar onClose={getDashboardRouteData} />
       </div>
       <button
         className="dashboardHeader__button"
