@@ -32,6 +32,6 @@
   }
   &__img {
     display: block;
-    max-width: 400px;
+    max-width: min(400px, 90%);
   }
 }

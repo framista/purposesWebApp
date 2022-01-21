@@ -5,6 +5,9 @@ import AboutFooter from './AboutFooter/AboutFooter';
 import AboutHeader from './AboutHeader/AboutHeader';
 import AboutEntry from './AboutEntry/AboutEntry';
 import AboutLogin from './AboutLogin/AboutLogin';
+import AboutSection from './AboutSection/AboutSection';
+
+import { sections } from './About.helpers';
 
 import './About.scss';
 
@@ -20,6 +23,9 @@ const About = ({ logged }) => {
       <div className={contentClassName}>
         <AboutEntry />
         {!logged && <AboutLogin />}
+        {sections.map((section) => (
+          <AboutSection section={section} key={section.id} />
+        ))}
       </div>
       <AboutFooter />
     </div>

@@ -34,7 +34,7 @@ export const fetchStatistics =
     const { currentUser, dates } = getState();
     const start = startDate || dates.startDate;
     const end = endDate || dates.endDate;
-    const datesArray = getDates(startDate, endDate);
+    const datesArray = getDates(start, end);
     const result = await purposeApi(currentUser.id).get(URL_STATISTICS, {
       params: { startDate: start, endDate: end },
     });
