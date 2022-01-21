@@ -11,6 +11,7 @@ import './About.scss';
 const About = ({ logged }) => {
   const contentClassName = classNames('about', {
     app__content: logged,
+    'about--notLogged': !logged,
   });
 
   return (
