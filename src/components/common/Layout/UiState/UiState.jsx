@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { ToastContainer } from 'react-toastify';
 
 import { UI_STATE_MODE } from '../../../../constants/localStorage';
 
+import 'react-toastify/dist/ReactToastify.css';
 import './UiState.scss';
 
 const UiState = ({ children, uiStateMode, setUiStateMode }) => {
@@ -13,6 +15,18 @@ const UiState = ({ children, uiStateMode, setUiStateMode }) => {
 
   return (
     <div data-theme={uiStateMode} className="uiState">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={uiStateMode}
+      />
       {children}
     </div>
   );

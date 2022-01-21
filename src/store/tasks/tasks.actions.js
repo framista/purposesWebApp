@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import * as AT from '../actionTypes';
 import { purposeApi } from '../../services/purposeApi';
 import { URL_TASK } from '../endpoints';
@@ -13,7 +15,7 @@ export const fetchTasks = (userId) => async (dispatch) => {
     const result = await purposeApi(userId).get(URL_TASK);
     dispatch(fetchTasksSuccessfully(result.data));
   } catch (err) {
-    console.log(err);
+    toast.error('Problem with tasks fetching');
   }
 };
 
@@ -25,7 +27,7 @@ export const getTaskRouteData = () => async (dispatch, getState) => {
     promises.push(dispatch(fetchTasks(currentUser.id)));
     await Promise.all(promises);
   } catch (err) {
-    console.log(err);
+    toast.error('Unexpected error');
   }
 };
 
@@ -41,8 +43,9 @@ export const createTask = (task) => async (dispatch, getState) => {
     const newTask = { ...restTask, name, category_id: category._id };
     const result = await purposeApi(currentUser.id).post(URL_TASK, newTask);
     dispatch(createTaskSuccessfully(newTask, result.data.id));
+    toast.success('Task was added successfully');
   } catch (err) {
-    console.log(err);
+    toast.error('Task was not added');
   }
 };
 

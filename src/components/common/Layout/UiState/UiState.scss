@@ -1,4 +1,12 @@
 .uiState {
   background-color: var(--background-color);
   height: 100%;
+  --toastify-color-dark: var(--card-background-color);
+  .Toastify__close-button {
+    display: none;
+  }
+  .Toastify__toast-body {
+    font-size: 0.7rem;
+    color: var(--contrast);
+  }
 }
