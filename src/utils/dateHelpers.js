@@ -1,4 +1,8 @@
-export const formatDate = (date) => new Date(date).toISOString().slice(0, 10);
+export const formatDate = (date, addDays = 0) => {
+  const newDate = new Date(date);
+  newDate.setDate(newDate.getDate() + addDays);
+  return newDate.toISOString().slice(0, 10);
+};
 
 export const getDates = (startDate, endDate) => {
   let dates = [];
@@ -22,4 +26,19 @@ export const getEndOfDate = (date) => {
   const newDate = new Date(date);
   newDate.setUTCHours(23, 59, 59, 999);
   return newDate;
+};
+
+export const getFirstDayOfCurrentWeek = () => {
+  const curr = new Date();
+  const first = curr.getDate() - curr.getDay();
+  const firstday = new Date(curr.setDate(first)).toUTCString();
+  return formatDate(firstday);
+};
+
+export const getLastDayOfCurrentWeek = () => {
+  const curr = new Date();
+  const first = curr.getDate() - curr.getDay();
+  const last = first + 6;
+  const lastday = new Date(curr.setDate(last)).toUTCString();
+  return formatDate(lastday);
 };

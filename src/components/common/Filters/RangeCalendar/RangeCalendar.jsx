@@ -1,15 +1,22 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { MdOutlineCalendarToday } from 'react-icons/md';
-import { addDays } from 'date-fns';
 import { DateRangePicker } from 'react-date-range';
 
 import { usePortal } from '../../../../hooks';
 import { COLOR_PRIMARY } from '../../../../constants/color';
+import { formatDate } from '../../../../utils/dateHelpers';
 
 import './RangeCalendar.scss';
 
+const getDateObject = (startDate, endDate) => ({
+  startDate: new Date(startDate),
+  endDate: new Date(endDate),
+  key: 'selection',
+  color: COLOR_PRIMARY,
+});
+
 const RangeCalendar = (props) => {
-  const { selectLabel, uiStateMode } = props;
+  const { uiStateMode, startDate, endDate, changeDates } = props;
   const calendarContentRef = useRef(null);
   const calendarButtonRef = useRef(null);
 
@@ -19,14 +26,15 @@ const RangeCalendar = (props) => {
     handlers: portalHandlers,
   } = usePortal(calendarContentRef, calendarButtonRef, { x: 0, y: 35 });
 
-  const [state, setState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
-      key: 'selection',
-      color: COLOR_PRIMARY,
-    },
-  ]);
+  const [state, setState] = useState([getDateObject(startDate, endDate)]);
+
+  useEffect(() => {
+    if (state[0]?.startDate && state[0]?.endDate)
+      changeDates(
+        formatDate(state[0].startDate, 1),
+        formatDate(state[0].endDate)
+      );
+  }, [state[0]?.startDate, state[0]?.endDate]);
 
   return (
     <div className="rangeCalendar">
@@ -36,7 +44,7 @@ const RangeCalendar = (props) => {
         ref={calendarButtonRef}
       >
         <MdOutlineCalendarToday />
-        <p className="rangeCalendar__selectLabel">{selectLabel}</p>
+        <p className="rangeCalendar__selectLabel">Calendar</p>
       </div>
       {open && (
         <div

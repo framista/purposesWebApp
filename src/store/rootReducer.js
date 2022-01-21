@@ -7,6 +7,7 @@ import tasks from './tasks/tasks.reducer';
 import dashboard from './dashboard/dashboard.reducer';
 import activities from './activities/activities.reducer';
 import statistics from './statistics/statistics.reducer';
+import dates from './dates/dates.reducer';
 
 const rootReducer = combineReducers({
   categories,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   dashboard,
   activities,
   statistics,
+  dates,
 });
 
 export default rootReducer;
