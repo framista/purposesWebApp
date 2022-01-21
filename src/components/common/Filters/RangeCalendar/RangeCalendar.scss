@@ -1,0 +1,97 @@
+.rangeCalendar {
+  &__button {
+    display: flex;
+    align-items: center;
+    background-color: var(--muted-border-color);
+    margin-right: 30px;
+    padding: 5px 10px;
+    border-radius: 25px;
+    color: var(--contrast);
+    font-size: 0.7rem;
+    cursor: pointer;
+  }
+  &__selectLabel {
+    margin: 0;
+    margin-left: 5px;
+    font-size: 0.7rem;
+  }
+  &__content {
+    position: absolute;
+    border: 1px solid var(--contrast-focus);
+    border-radius: 10px;
+    z-index: 100;
+    overflow: hidden;
+    .rdrDefinedRangesWrapper {
+      display: none;
+      background-color: var(--card-background-color);
+      border-color: var(--primary);
+      width: 120px;
+      .rdrStaticRanges {
+        .rdrStaticRange {
+          margin: 0;
+          border: none;
+          .rdrStaticRangeLabel {
+            background-color: var(--card-background-color);
+            color: var(--contrast);
+          }
+        }
+      }
+      @media screen and (min-width: 1100px) {
+        display: block;
+      }
+    }
+    .rdrMonthAndYearPickers {
+      select {
+        all: unset;
+        color: var(--contrast);
+        font-size: 0.8rem;
+        option {
+          color: var(--secondary);
+        }
+      }
+    }
+    .rdrDateDisplayWrapper {
+      background-color: var(--card-background-color);
+      .rdrDateInput {
+        border: 2px solid var(--primary);
+        background-color: var(--card-background-color);
+        overflow: hidden;
+        input {
+          all: unset;
+          background-color: var(--card-background-color);
+          margin: 0;
+          color: var(--contrast);
+          border: none;
+        }
+        input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='file']),
+        select,
+        textarea {
+          font-size: 0.6rem;
+          padding: 5px 10px !important;
+        }
+      }
+    }
+    .rdrCalendarWrapper {
+      background-color: var(--card-background-color);
+      .rdrMonth {
+        .rdrDay {
+          margin: 0;
+          &:focus {
+            box-shadow: none;
+          }
+        }
+        .rdrDayNumber span {
+          color: var(--contrast);
+        }
+        .rdrDayPassive {
+          .rdrDayNumber span {
+            color: var(--secondary);
+          }
+        }
+        .rdrDayToday .rdrDayNumber span:after {
+          background-color: var(--primary);
+        }
+      }
+    }
+  }
+}

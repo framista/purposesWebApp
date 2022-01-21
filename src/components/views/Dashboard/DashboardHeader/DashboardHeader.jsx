@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { MdAddBox } from 'react-icons/md';
 
 import { ACTIVITY_MODAL } from '../../../../constants/modalTypes';
-import { SearchInput } from '../../../common/Filters';
+import { RangeCalendar, SearchInput } from '../../../common/Filters';
 import CategoryMultiSelect from '../../Category/CategoryMultiSelect/CategoryMultiSelect.redux';
 
 import './DashboardHeader.scss';
@@ -22,6 +22,7 @@ const DashboardHeader = ({
           value={searchValue}
         />
         <CategoryMultiSelect />
+        <RangeCalendar />
       </div>
       <button
         className="dashboardHeader__button"
