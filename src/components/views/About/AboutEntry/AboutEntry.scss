@@ -1,0 +1,33 @@
+.aboutEntry {
+  &__title {
+    text-align: center;
+    font-family: 'Yellowtail', serif;
+    font-size: 3rem;
+  }
+  &__section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &__text {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    p {
+      font-weight: 500;
+    }
+    &--highlighted {
+      color: var(--primary);
+    }
+  }
+  &__imgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__img {
+    display: block;
+    max-width: 400px;
+  }
+}

@@ -6,7 +6,7 @@ import RequireAuth from '../RequireAuth/RequireAuth.redux';
 import LoginPage from '../../components/views/LoginPage/LoginPage';
 import SignUpPage from '../../components/views/SignUpPage/SignUpPage';
 import Dashboard from '../../components/views/Dashboard/Dashboard.redux';
-import About from '../../components/views/About/About';
+import About from '../../components/views/About/About.redux';
 import Auth from '../../components/views/Auth/Auth.redux';
 import Category from '../../components/views/Category/Category.redux';
 import Task from '../../components/views/Task/Task.redux';
