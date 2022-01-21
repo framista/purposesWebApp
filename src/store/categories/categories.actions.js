@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import * as AT from '../actionTypes';
 import { purposeApi } from '../../services/purposeApi';
 import { URL_CATEGORY } from '../endpoints';
@@ -9,17 +11,13 @@ const fetchCategoriesSuccessfully = (categories) => ({
 });
 
 export const fetchCategories = (userId) => async (dispatch) => {
-  try {
-    const result = await purposeApi(userId).get(URL_CATEGORY);
-    const { categories, pointsObj } = result.data;
-    const data = categories.map((category) => ({
-      ...category,
-      currentWeekPoints: pointsObj[category._id] || 0,
-    }));
-    dispatch(fetchCategoriesSuccessfully(data));
-  } catch (err) {
-    console.log(err);
-  }
+  const result = await purposeApi(userId).get(URL_CATEGORY);
+  const { categories, pointsObj } = result.data;
+  const data = categories.map((category) => ({
+    ...category,
+    currentWeekPoints: pointsObj[category._id] || 0,
+  }));
+  dispatch(fetchCategoriesSuccessfully(data));
 };
 
 export const getCategoryRouteData = () => async (dispatch, getState) => {
@@ -28,8 +26,9 @@ export const getCategoryRouteData = () => async (dispatch, getState) => {
     const promises = [];
     promises.push(dispatch(fetchCategories(currentUser.id)));
     await Promise.all(promises);
+    toast.success('Data fetched successfully');
   } catch (err) {
-    console.log(err);
+    toast.error('Unexpected error');
   }
 };
 
@@ -48,8 +47,9 @@ export const createCategory = (category) => async (dispatch, getState) => {
       newCategory
     );
     dispatch(createCategorySuccessfully(newCategory, result.data.id));
+    toast.success('Category was added successfully');
   } catch (err) {
-    console.log(err);
+    toast.error('Category was not added');
   }
 };
 
@@ -68,8 +68,9 @@ export const updateCategory = (category) => async (dispatch, getState) => {
       updatedCategory
     );
     dispatch(updateCategorySuccessfully({ ...updatedCategory, _id }));
+    toast.success('Category was updated successfully');
   } catch (err) {
-    console.log(err);
+    toast.error('Category was not updated');
   }
 };
 

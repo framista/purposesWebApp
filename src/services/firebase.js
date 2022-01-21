@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { initializeApp } from 'firebase/app';
 import { collection, getDocs } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
@@ -41,8 +42,7 @@ const signInWithGoogle = async () => {
       await createUser(displayName, uid, email);
     }
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    toast.error('Problew with login. Try again');
   }
 };
 
@@ -50,8 +50,7 @@ const loginWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    toast.error('Problew with login. Try again');
   }
 };
 
@@ -59,17 +58,18 @@ const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     await createUser(name, res.user.uid, email);
+    toast.success('Account created successfully');
   } catch (err) {
-    console.error(err);
-    alert(err.message);
+    toast.error('Problem with creating account. Try again');
   }
 };
 
 const logout = async () => {
   try {
     await signOut(auth);
+    toast.success('User logouted successfully');
   } catch (err) {
-    console.log(err);
+    toast.error('Problem with logout');
   }
 };
 

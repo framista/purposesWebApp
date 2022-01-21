@@ -31,16 +31,12 @@ const fetchStatisticsSuccessfully = (data, dates) => (dispatch, getState) => {
 
 export const fetchStatistics =
   (startDate, endDate) => async (dispatch, getState) => {
-    try {
-      const { currentUser, dates } = getState();
-      const start = startDate || dates.startDate;
-      const end = endDate || dates.endDate;
-      const datesArray = getDates(startDate, endDate);
-      const result = await purposeApi(currentUser.id).get(URL_STATISTICS, {
-        params: { startDate: start, endDate: end },
-      });
-      dispatch(fetchStatisticsSuccessfully(result.data, datesArray));
-    } catch (err) {
-      console.log(err);
-    }
+    const { currentUser, dates } = getState();
+    const start = startDate || dates.startDate;
+    const end = endDate || dates.endDate;
+    const datesArray = getDates(startDate, endDate);
+    const result = await purposeApi(currentUser.id).get(URL_STATISTICS, {
+      params: { startDate: start, endDate: end },
+    });
+    dispatch(fetchStatisticsSuccessfully(result.data, datesArray));
   };

@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import * as AT from '../actionTypes';
 import { purposeApi } from '../../services/purposeApi';
 import { URL_ACTIVITIES } from '../endpoints';
@@ -10,18 +12,14 @@ const fetchActivitiesSuccessfully = (activities) => ({
 
 export const fetchActivities =
   (startDate, endDate) => async (dispatch, getState) => {
-    try {
-      const { dates, currentUser } = getState();
-      const result = await purposeApi(currentUser.id).get(URL_ACTIVITIES, {
-        params: {
-          startDate: startDate || dates.startDate,
-          endDate: endDate || dates.endDate,
-        },
-      });
-      dispatch(fetchActivitiesSuccessfully(result.data));
-    } catch (err) {
-      console.log(err);
-    }
+    const { dates, currentUser } = getState();
+    const result = await purposeApi(currentUser.id).get(URL_ACTIVITIES, {
+      params: {
+        startDate: startDate || dates.startDate,
+        endDate: endDate || dates.endDate,
+      },
+    });
+    dispatch(fetchActivitiesSuccessfully(result.data));
   };
 
 const createActivitySuccessfully = (activity, id) => ({
@@ -43,8 +41,9 @@ export const createActivity = (activity) => async (dispatch, getState) => {
       newActivity
     );
     dispatch(createActivitySuccessfully(newActivity, result.data.id));
+    toast.success('Activity was added successfully');
     Promise.all([dispatch(fetchActivities()), dispatch(fetchStatistics())]);
   } catch (err) {
-    console.log(err);
+    toast.error('Activity was not added');
   }
 };

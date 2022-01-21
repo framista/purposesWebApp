@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import * as AT from '../actionTypes';
 import { fetchActivities } from '../activities/activities.actions';
 import {
@@ -17,8 +19,9 @@ export const getDashboardRouteData = () => async (dispatch, getState) => {
     promises.push(dispatch(fetchStatistics()));
     await Promise.all(promises);
     dispatch(selectAllCategorieries());
+    toast.success('Data fetched successfully');
   } catch (err) {
-    console.log(err);
+    toast.error('Problem with dashboard data fetching');
   }
 };
 

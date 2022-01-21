@@ -16,16 +16,17 @@ const UiState = ({ children, uiStateMode, setUiStateMode }) => {
   return (
     <div data-theme={uiStateMode} className="uiState">
       <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={3000}
         hideProgressBar={false}
-        newestOnTop={false}
+        newestOnTop={true}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
         draggable
         pauseOnHover
         theme={uiStateMode}
+        limit={3}
       />
       {children}
     </div>

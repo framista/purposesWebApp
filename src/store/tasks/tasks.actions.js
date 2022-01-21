@@ -11,12 +11,8 @@ const fetchTasksSuccessfully = (tasks) => ({
 });
 
 export const fetchTasks = (userId) => async (dispatch) => {
-  try {
-    const result = await purposeApi(userId).get(URL_TASK);
-    dispatch(fetchTasksSuccessfully(result.data));
-  } catch (err) {
-    toast.error('Problem with tasks fetching');
-  }
+  const result = await purposeApi(userId).get(URL_TASK);
+  dispatch(fetchTasksSuccessfully(result.data));
 };
 
 export const getTaskRouteData = () => async (dispatch, getState) => {
@@ -26,6 +22,7 @@ export const getTaskRouteData = () => async (dispatch, getState) => {
     promises.push(dispatch(fetchCategories(currentUser.id)));
     promises.push(dispatch(fetchTasks(currentUser.id)));
     await Promise.all(promises);
+    toast.success('Data fetched successfully');
   } catch (err) {
     toast.error('Unexpected error');
   }
