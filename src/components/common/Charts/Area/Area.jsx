@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Chart from 'react-apexcharts';
 
 import './Area.scss';
+import { COLOR_PRIMARY } from '../../../../constants/color';
 
 const Area = ({ height, data }) => {
   return (
@@ -35,6 +36,7 @@ const Area = ({ height, data }) => {
           tooltip: {
             enabled: false,
           },
+          colors: [COLOR_PRIMARY],
         }}
       />
     </div>
