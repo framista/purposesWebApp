@@ -20,7 +20,7 @@ const Select = (props) => {
       <select
         id={id}
         name={name || id}
-        value={value.id}
+        value={value._id}
         defaultValue={placeholder}
         onChange={(e) => {
           const option =

@@ -1,25 +1,12 @@
-import React from 'react';
-import { MdEditNote, MdDeleteForever } from 'react-icons/md';
+import React, { useMemo } from 'react';
 
 import { OptionsMenu } from '../../../../common/Layout';
+import { getOptions } from './DashboardTableRowOptionsMenu.helpers';
 
 import './DashboardTableRowOptionsMenu.scss';
 
-const DashboardTableRowOptionsMenu = () => {
-  const options = [
-    {
-      name: 'Edit',
-      icon: <MdEditNote />,
-      disabled: true,
-      onClick: () => console.log('edit'),
-    },
-    {
-      name: 'Delete',
-      icon: <MdDeleteForever />,
-      disabled: false,
-      onClick: () => console.log('del'),
-    },
-  ];
+const DashboardTableRowOptionsMenu = ({ showModal, _id }) => {
+  const options = useMemo(() => getOptions(showModal, _id), [_id]);
   return (
     <div className="dashboardTableRowOptionsMenu">
       <OptionsMenu options={options} />

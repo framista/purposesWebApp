@@ -9,3 +9,18 @@ export const getInitialState = () => {
     errors: {},
   };
 };
+
+export const getUpdatedState = (
+  selectedActivity,
+  selectedCategory,
+  selectedTask
+) => {
+  return {
+    _id: selectedActivity._id,
+    category: selectedCategory,
+    task: selectedTask,
+    points: selectedActivity.points,
+    date: formatDate(selectedActivity.date),
+    errors: {},
+  };
+};

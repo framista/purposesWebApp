@@ -1,17 +1,34 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Modal from '../../../common/Form/Modal/Modal.redux';
 import { Input, Select } from '../../../common/Form';
 
 import { useInputChange } from '../../../../hooks';
-import { getInitialState } from './ActivityModal.helpers';
+import { getInitialState, getUpdatedState } from './ActivityModal.helpers';
 import { createEvent } from '../../../../utils/inputHelpers';
 
 const ActivityModal = (props) => {
-  const { isOpen, hideModal, createActivity, allCategories, allTasks } = props;
+  const {
+    isOpen,
+    hideModal,
+    createActivity,
+    allCategories,
+    allTasks,
+    selectedActivity,
+    selectedCategory,
+    selectedTask,
+    updateActivity,
+  } = props;
   const [loading, setLoading] = useState(false);
   const [state, handlers] = useInputChange(getInitialState());
+
+  useEffect(() => {
+    if (selectedActivity._id)
+      handlers.updateState(
+        getUpdatedState(selectedActivity, selectedCategory, selectedTask)
+      );
+  }, [selectedActivity._id]);
 
   const categoriesOptions = useMemo(
     () => Object.values(allCategories),
@@ -48,12 +65,16 @@ const ActivityModal = (props) => {
   };
 
   const handleSubmit = useCallback(async () => {
-    const { errors, ...task } = state;
+    const { errors, ...activity } = state;
     const valid = await validateAll();
     if (!valid) return;
     try {
       setLoading(true);
-      await createActivity(task);
+      if (activity._id) {
+        await updateActivity(activity);
+      } else {
+        await createActivity(activity);
+      }
     } finally {
       setLoading(false);
       hideAndClear();

@@ -30,9 +30,9 @@ const createActivitySuccessfully = (activity, id) => ({
 export const createActivity = (activity) => async (dispatch, getState) => {
   const { currentUser } = getState();
   try {
-    const { task, category, ...restTask } = activity;
+    const { task, category, ...restActivity } = activity;
     const newActivity = {
-      ...restTask,
+      ...restActivity,
       task_id: task._id,
       category_id: category._id,
     };
@@ -45,5 +45,30 @@ export const createActivity = (activity) => async (dispatch, getState) => {
     Promise.all([dispatch(fetchActivities()), dispatch(fetchStatistics())]);
   } catch (err) {
     toast.error('Activity was not added');
+  }
+};
+
+const updateActivitySuccessfully = (activity) => ({
+  type: AT.UPDATE_ACTIVITY_SUCCESSFULLY,
+  payload: activity,
+});
+
+export const updateActivity = (activity) => async (dispatch, getState) => {
+  const { currentUser } = getState();
+  try {
+    const { task, category, ...restActivity } = activity;
+    const updatedActivity = {
+      ...restActivity,
+      task_id: task._id,
+      category_id: category._id,
+    };
+    await purposeApi(currentUser.id).put(
+      `${URL_ACTIVITIES}/${activity._id}`,
+      updatedActivity
+    );
+    dispatch(updateActivitySuccessfully(updatedActivity));
+    toast.success('Activity was updated successfully');
+  } catch (err) {
+    toast.error('Activity was not updated');
   }
 };
