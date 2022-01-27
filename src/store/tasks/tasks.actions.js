@@ -28,9 +28,9 @@ export const getTaskRouteData = () => async (dispatch, getState) => {
   }
 };
 
-const createTaskSuccessfully = (task, id) => ({
+const createTaskSuccessfully = (task, _id) => ({
   type: AT.CREATE_TASK_SUCCESSFULLY,
-  payload: { ...task, id },
+  payload: { ...task, _id },
 });
 
 export const createTask = (task) => async (dispatch, getState) => {
@@ -43,6 +43,27 @@ export const createTask = (task) => async (dispatch, getState) => {
     toast.success('Task was added successfully');
   } catch (err) {
     toast.error('Task was not added');
+  }
+};
+
+const updateTaskSuccessfully = (task) => ({
+  type: AT.UPDATE_TASK_SUCCESSFULLY,
+  payload: task,
+});
+
+export const updateTask = (task) => async (dispatch, getState) => {
+  const { currentUser } = getState();
+  try {
+    const { taskName: name, category, ...restTask } = task;
+    const updatedTask = { ...restTask, name, category_id: category._id };
+    await purposeApi(currentUser.id).put(
+      `${URL_TASK}/${updatedTask._id}`,
+      updatedTask
+    );
+    dispatch(updateTaskSuccessfully(updatedTask));
+    toast.success('Task was updated successfully');
+  } catch (err) {
+    toast.error('Task was not updated');
   }
 };
 

@@ -14,7 +14,16 @@ const tasks = (state = initialState, action) => {
         ...state,
         allTasks: {
           ...state.allTasks,
-          [action.payload.id]: { ...action.payload },
+          [action.payload._id]: { ...action.payload },
+        },
+      };
+    }
+    case AT.UPDATE_TASK_SUCCESSFULLY: {
+      return {
+        ...state,
+        allTasks: {
+          ...state.allTasks,
+          [action.payload._id]: action.payload,
         },
       };
     }

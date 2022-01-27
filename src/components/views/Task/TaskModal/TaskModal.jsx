@@ -1,22 +1,35 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Modal from '../../../common/Form/Modal/Modal.redux';
 import { Input, Select, TextArea } from '../../../common/Form';
 
 import { useInputChange } from '../../../../hooks';
-import { getInitialState } from './TaskModal.helpers';
+import { getInitialState, getUpdatedState } from './TaskModal.helpers';
 import { createEvent } from '../../../../utils/inputHelpers';
 
 const TaskModal = (props) => {
-  const { isOpen, hideModal, createTask, allCategories } = props;
+  const {
+    isOpen,
+    hideModal,
+    createTask,
+    allCategories,
+    selectedTask,
+    selectedCategory,
+    updateTask,
+  } = props;
   const [loading, setLoading] = useState(false);
   const [state, handlers] = useInputChange(getInitialState());
   const categoriesOptions = useMemo(
     () => Object.values(allCategories),
     [allCategories]
   );
-  const modalTitle = 'Add task';
+  const modalTitle = selectedTask._id ? 'Edit task' : 'Add task';
+
+  useEffect(() => {
+    if (selectedTask._id)
+      handlers.updateState(getUpdatedState(selectedTask, selectedCategory));
+  }, [selectedTask._id]);
 
   const validateAll = async () => {
     const inputs = ['taskName', 'description', 'category'];
@@ -33,7 +46,11 @@ const TaskModal = (props) => {
     if (!valid) return;
     try {
       setLoading(true);
-      await createTask(task);
+      if (task._id) {
+        await updateTask(task);
+      } else {
+        await createTask(task);
+      }
     } finally {
       setLoading(false);
       hideAndClear();
@@ -95,6 +112,7 @@ TaskModal.propTypes = {
   isOpen: PropTypes.bool,
   hideModal: PropTypes.func,
   createTask: PropTypes.func,
+  updateTask: PropTypes.func,
 };
 
 export default TaskModal;

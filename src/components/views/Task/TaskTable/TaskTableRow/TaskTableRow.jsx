@@ -7,8 +7,8 @@ import { shorterString } from '../../../../../utils/stringHelpers';
 import './TaskTableRow.scss';
 
 const TaskTableRow = (props) => {
-  const { task, category } = props;
-  const { name, description, points } = task;
+  const { task, category, showModal } = props;
+  const { name, description, points, _id } = task;
 
   return (
     <div className="taskTableRow">
@@ -22,7 +22,7 @@ const TaskTableRow = (props) => {
         />
         <p className="taskTableRow__categoryName">{category.name}</p>
       </div>
-      <TaskTableRowOptionsMenu />
+      <TaskTableRowOptionsMenu _id={_id} showModal={showModal} />
     </div>
   );
 };
@@ -33,7 +33,9 @@ TaskTableRow.propTypes = {
     description: PropTypes.string,
     points: PropTypes.number,
     color: PropTypes.string,
+    _id: PropTypes.string,
   }),
+  showModal: PropTypes.func,
 };
 
 export default React.memo(TaskTableRow);
