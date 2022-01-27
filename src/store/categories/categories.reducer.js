@@ -16,7 +16,7 @@ const categories = (state = initialState, action) => {
         ...state,
         allCategories: {
           ...state.allCategories,
-          [action.payload.id]: { ...action.payload },
+          [action.payload._id]: { ...action.payload },
         },
       };
     }

@@ -32,9 +32,9 @@ export const getCategoryRouteData = () => async (dispatch, getState) => {
   }
 };
 
-const createCategorySuccessfully = (category, id) => ({
+const createCategorySuccessfully = (category, _id) => ({
   type: AT.CREATE_CATEGORY_SUCCESSFULLY,
-  payload: { ...category, id },
+  payload: { ...category, _id },
 });
 
 export const createCategory = (category) => async (dispatch, getState) => {
