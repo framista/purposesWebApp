@@ -32,13 +32,26 @@ const DashboardCharts = ({
     return { labels, data, colors };
   }, [pointsCategorySummary, selectedCategories]);
 
+  const areaChartData = useMemo(
+    () =>
+      dailyPoints.reduce((arr, dailyData) => {
+        const dailySum = Object.entries(dailyData).reduce(
+          (sum, [categoryId, points]) =>
+            selectedCategories.includes(categoryId) ? sum + points : sum,
+          0
+        );
+        return [...arr, dailySum];
+      }, []),
+    [selectedCategories, dailyPoints]
+  );
+
   if (selectedCategories.length === 0) return null;
 
   return (
     <div className="dashboardCharts">
       <Radar height={'400px'} data={pointsData} />
       <RadialMultiple height={'400px'} data={pointsData} />
-      <Area height={'400px'} data={dailyPoints} />
+      <Area height={'400px'} data={areaChartData} />
       <TimelineMultiRange height={'400px'} data={timelineChartData} />
     </div>
   );

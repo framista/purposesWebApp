@@ -2,14 +2,17 @@ import { DAYS_IN_WEEK } from '../../constants/dates';
 import { getEndOfDate, getStartOfDate } from '../../utils/dateHelpers';
 
 export const formatDailyPoints = (dailyPoints, dates) => {
-  const dataObject = dailyPoints.reduce(
-    (obj, dailyData) => ({
+  const dataObject = dailyPoints.reduce((obj, dailyData) => {
+    const date = dailyData._id.dateToString.date.slice(0, 10);
+    return {
       ...obj,
-      [dailyData._id]: dailyData.totalDailyPoints,
-    }),
-    {}
-  );
-  return dates.map((date) => dataObject[date] || 0);
+      [date]: {
+        ...obj[date],
+        [dailyData._id.categoryId]: dailyData.totalDailyPoints,
+      },
+    };
+  }, {});
+  return dates.map((date) => dataObject[date] || {});
 };
 
 const getEmptyCategoryData = (category, date) => ({
@@ -23,7 +26,7 @@ const getEmptyCategoryData = (category, date) => ({
 export const formatCategoriesWithDatesOfActivity = (
   allCategories,
   datesForCategories,
-  firstDate,
+  firstDate
 ) => {
   const dataObj = datesForCategories.reduce(
     (prev, data) => ({
