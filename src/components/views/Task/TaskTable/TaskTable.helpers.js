@@ -19,5 +19,5 @@ export const getRelevantTasks = (
       ? [...tasks, { ...task, categoryName }]
       : tasks;
   }, []);
-  return sortArrayByKey(array, sortingColumn, sortingWay === 'desc');
+  return sortArrayByKey(array, sortingColumn || 'name', sortingWay === 'desc');
 };
