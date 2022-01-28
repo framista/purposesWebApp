@@ -1,7 +1,11 @@
-export const formatDate = (date = new Date(), addDays = 0) => {
+const formatNumber = (number) => (number < 9 ? `0${number}` : number);
+
+export const formatDate = (date) => {
   const newDate = new Date(date);
-  newDate.setDate(newDate.getDate() + addDays);
-  return newDate.toISOString().slice(0, 10);
+  const year = newDate.getFullYear();
+  const month = newDate.getMonth() + 1;
+  const day = newDate.getDate();
+  return `${year}-${formatNumber(month)}-${formatNumber(day)}`;
 };
 
 export const getDates = (startDate, endDate) => {
@@ -29,18 +33,17 @@ export const getEndOfDate = (date) => {
 };
 
 export const getFirstDayOfCurrentWeek = () => {
-  const curr = new Date();
-  const first = curr.getDate() - curr.getDay();
-  const firstday = new Date(curr.setDate(first)).toUTCString();
-  return formatDate(firstday);
+  const d = new Date();
+  d.setUTCHours(12, 0, 0, 0);
+  const day = d.getDay();
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+  return formatDate(new Date(d.setDate(diff)));
 };
 
 export const getLastDayOfCurrentWeek = () => {
-  const curr = new Date();
-  const first = curr.getDate() - curr.getDay();
-  const last = first + 6;
-  const lastday = new Date(curr.setDate(last)).toUTCString();
-  return formatDate(lastday);
+  const date = new Date(getFirstDayOfCurrentWeek());
+  date.setDate(date.getDate() + 6);
+  return formatDate(date);
 };
 
 export const formatShortDateToHumanDate = (date) => {

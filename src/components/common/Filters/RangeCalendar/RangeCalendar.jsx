@@ -33,10 +33,7 @@ const RangeCalendar = (props) => {
 
   useEffect(() => {
     if (state[0]?.startDate && state[0]?.endDate)
-      changeDates(
-        formatDate(state[0].startDate, 1),
-        formatDate(state[0].endDate, 1)
-      );
+      changeDates(formatDate(state[0].startDate), formatDate(state[0].endDate));
   }, [state[0]?.startDate, state[0]?.endDate]);
 
   return (
