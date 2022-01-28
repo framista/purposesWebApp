@@ -27,7 +27,7 @@ const Modal = (props) => {
 
   return ReactDOM.createPortal(
     <div className="modal" data-theme={uiStateMode}>
-      <dialog open="true" onClick={onClose}>
+      <dialog open={true} onClick={onClose}>
         <article
           className="modal__article"
           onClick={(e) => {
