@@ -41,7 +41,8 @@
       "react-app/jest"
     ],
     "rules": {
-      "react-hooks/exhaustive-deps": "off"
+      "react-hooks/exhaustive-deps": "off",
+      "testing-library/no-unnecessary-act": "off"
     }
   },
   "browserslist": {
