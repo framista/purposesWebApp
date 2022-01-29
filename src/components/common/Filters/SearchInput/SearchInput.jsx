@@ -12,6 +12,7 @@ const SearchInput = ({ value, onChange }) => {
         className="searchInput__input"
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        data-testid="searchInput"
       />
     </div>
   );

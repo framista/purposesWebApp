@@ -1,10 +1,18 @@
 import React from 'react';
 import { render as rtlRender } from '@testing-library/react';
 import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-import store from './store';
+import rootReducer from './store/rootReducer';
 
-function render(ui, { ...renderOptions } = {}) {
+function render(
+  ui,
+  {
+    initialState,
+    store = createStore(rootReducer, initialState),
+    ...renderOptions
+  } = {}
+) {
   function Wrapper({ children }) {
     return <Provider store={store}>{children}</Provider>;
   }

@@ -47,6 +47,7 @@ const MultiSelect = (props) => {
           style={coords}
           data-theme={uiStateMode}
           ref={multiSelectContentRef}
+          data-testid="multiSelect-content"
         >
           <SearchInput value={searchInput} onChange={onSearchInputChange} />
           <MultiSelectAllOrNone
