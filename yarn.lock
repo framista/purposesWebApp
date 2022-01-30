@@ -7836,7 +7836,7 @@
   "resolved" "https://registry.npmjs.org/overlayscrollbars-react/-/overlayscrollbars-react-0.2.3.tgz"
   "version" "0.2.3"
 
-"overlayscrollbars@^1.10.0":
+"overlayscrollbars@^1.10.0", "overlayscrollbars@^1.13.1":
   "integrity" "sha512-gIQfzgGgu1wy80EB4/6DaJGHMEGmizq27xHIESrzXq0Y/J0Ay1P3DWk6tuVmEPIZH15zaBlxeEJOqdJKmowHCQ=="
   "resolved" "https://registry.npmjs.org/overlayscrollbars/-/overlayscrollbars-1.13.1.tgz"
   "version" "1.13.1"
