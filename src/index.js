@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import './index.css';
-import 'overlayscrollbars/css/OverlayScrollbars.css';
+// import 'overlayscrollbars/css/OverlayScrollbars.css';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
