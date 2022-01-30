@@ -6,7 +6,7 @@
   height: 90%;
   img {
     display: block;
-    width: min(400px, 90%);
+    width: calc(min(400px, 90%));
   }
   &__text {
     font-size: 2rem;

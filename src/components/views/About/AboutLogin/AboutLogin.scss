@@ -5,7 +5,7 @@
   padding: 40px 0;
   &__options {
     display: flex;
-    width: min(500px, 70%);
+    width: calc(min(500px, 70%));
     justify-content: space-between;
     a {
       font-size: 2rem;

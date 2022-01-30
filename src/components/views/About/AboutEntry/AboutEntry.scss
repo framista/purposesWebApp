@@ -32,6 +32,6 @@
   }
   &__img {
     display: block;
-    max-width: min(400px, 90%);
+    max-width: calc(min(400px, 90%));
   }
 }
