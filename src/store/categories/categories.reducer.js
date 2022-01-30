@@ -18,6 +18,7 @@ const categories = (state = initialState, action) => {
           ...state.allCategories,
           [action.payload._id]: { ...action.payload },
         },
+        selectedCategories: [...state.selectedCategories, action.payload._id]
       };
     }
     case AT.UPDATE_CATEGORY_SUCCESSFULLY: {
