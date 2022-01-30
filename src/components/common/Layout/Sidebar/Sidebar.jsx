@@ -47,7 +47,7 @@ const Sidebar = ({ logged, sidebarOpen, setSidebarOpen }) => {
 
 Sidebar.propTypes = {
   logged: PropTypes.bool,
-  setSidebarOpen: PropTypes.bool,
+  setSidebarOpen: PropTypes.func,
 };
 
 export default React.memo(Sidebar);

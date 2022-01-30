@@ -35,7 +35,7 @@ const UiState = ({ children, uiStateMode, setUiStateMode }) => {
 
 UiState.propTypes = {
   children: PropTypes.node,
-  uiStateMode: PropTypes.bool,
+  uiStateMode: PropTypes.string,
 };
 
 export default React.memo(UiState);
