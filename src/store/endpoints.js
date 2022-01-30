@@ -1,4 +1,7 @@
-export const BASE_URL = 'http://localhost:5000/';
+export const BASE_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://purposes-app.herokuapp.com/'
+    : 'http://localhost:5000/';
 
 // current user
 export const CREATE_USER = 'api/users';
