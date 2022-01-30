@@ -12,7 +12,7 @@ const DashboardCharts = ({
   dailyPoints,
   datesForCategories,
   selectedCategories,
-  pointsCategorySummary,
+  pointsCategorySummary = {},
 }) => {
   const timelineChartData = useMemo(
     () =>
@@ -24,7 +24,7 @@ const DashboardCharts = ({
     const [labels, data, colors] = [[], [], []];
     selectedCategories.forEach((categoryId) => {
       const { name, points, totalPoints, color } =
-        pointsCategorySummary[categoryId];
+        pointsCategorySummary[categoryId] || {};
       labels.push(name);
       data.push(((points / totalPoints) * 100).toFixed(0));
       colors.push(color);
